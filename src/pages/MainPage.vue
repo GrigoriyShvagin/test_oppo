@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-    {{ array }}
     <WhiteLight />
     <div class="header">
       <div class="header_content">
@@ -226,7 +225,7 @@ function nutClick() {
         position: relative;
         width: 50%;
         p {
-          font-size: 80px;
+          font-size: 50px;
           line-height: 70px;
           padding-right: 50px;
           font-weight: 700;
@@ -238,7 +237,7 @@ function nutClick() {
           max-height: 112px;
           position: absolute;
           bottom: -20px;
-          right: -70px;
+          right: -40px;
           transform: rotate(20deg);
         }
       }
