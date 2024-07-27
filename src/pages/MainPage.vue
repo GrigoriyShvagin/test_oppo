@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    {{ array }}
     <WhiteLight />
     <div class="header">
       <div class="header_content">
@@ -64,6 +65,9 @@ const user = {
   questsCount: 5,
 };
 
+const array = [window.innerWidth, window.innerHeight];
+
+console.log(window.innerHeight, window.innerWidth);
 let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 
