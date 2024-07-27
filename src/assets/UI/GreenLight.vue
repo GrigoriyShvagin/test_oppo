@@ -111,7 +111,7 @@ div {
 }
 @keyframes blink {
   50% {
-    opacity: 0.4;
+    opacity: 0;
   }
 }
 </style>
