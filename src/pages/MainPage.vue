@@ -185,7 +185,6 @@ function nutClick() {
         display: flex;
         height: 45%;
         z-index: 5;
-        margin-top: 30px;
         position: relative;
         align-items: center;
         justify-content: center;
@@ -195,9 +194,8 @@ function nutClick() {
           z-index: 2;
         }
         .firstNut {
-          max-width: 100vw;
+          max-width: 100%;
           height: auto;
-          top: -12vw;
         }
         .secondNut {
           width: 75%;
@@ -213,6 +211,7 @@ function nutClick() {
         }
         .cup {
           width: 80%;
+          height: 80%;
           z-index: 2;
         }
       }
@@ -239,6 +238,7 @@ function nutClick() {
           max-height: 112px;
           position: absolute;
           bottom: -20px;
+          right: -70px;
           transform: rotate(20deg);
         }
       }
