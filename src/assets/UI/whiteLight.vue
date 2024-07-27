@@ -42,10 +42,9 @@ div {
   position: absolute;
   width: 100vw;
   top: -70px;
-  right: 50%;
   z-index: 1;
   svg {
-    width: 100%;
+    width: 100vw;
   }
 }
 </style>
