@@ -5,8 +5,9 @@
       src="/images/phone.png"
       class="phone"
       ref="phone"
-      @mousedown="gotClick"
-      @mouseup="nutClick"
+      id="phone"
+      @touchstart="gotClick"
+      @touchend="nutClick"
     />
     <div class="header">
       <div class="header_content">
@@ -37,7 +38,7 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div class="nut_block" @mousedown="gotClick" @mouseup="nutClick">
+        <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
           <GreenLight />
           <img
@@ -75,6 +76,8 @@ let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
 
+const phoneEl = document.querySelector("#phone");
+
 function gotClick() {
   phone.value.classList.add("scaled");
 }
@@ -82,13 +85,15 @@ function gotClick() {
 function nutClick() {
   phone.value.classList.remove("scaled");
   userNutsCount.value += 1;
-  const less4 = currentNut.value < 4 ? true : false;
+  const less4 = currentNut.value < 4;
   if (userNutsCount.value % 4 == 0) {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
   }
 }
 
-onMounted(() => {});
+onMounted(() => {
+  console.log(phoneEl);
+});
 </script>
 
 <style lang="scss" scoped>
