@@ -6,8 +6,6 @@
       class="phone"
       ref="phone"
       id="phone"
-      @mousedown="gotClick"
-      @mouseup="nutClick"
       @touchstart="gotClick"
       @touchend="nutClick"
     />
@@ -40,13 +38,7 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div
-          class="nut_block"
-          @mousedown="gotClick"
-          @mouseup="nutClick"
-          @touchstart="gotClick"
-          @touchend="nutClick"
-        >
+        <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
           <GreenLight />
           <img
