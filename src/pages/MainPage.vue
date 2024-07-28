@@ -6,7 +6,8 @@
       class="phone"
       alt=""
       ref="phone"
-      @click="nutClick()"
+      @mousedown="gotClick()"
+      @mouseup="nutClick()"
     />
     <div class="header">
       <div class="header_content">
@@ -37,7 +38,7 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div class="nut_block" @click="nutClick()">
+        <div class="nut_block" @mousedown="gotClick()" @mouseup="nutClick()">
           <Cup class="cup" />
           <GreenLight />
           <img
@@ -76,12 +77,13 @@ const phone = ref(null);
 let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 
-function nutClick() {
+function gotClick() {
   phone.value.classList.add("scaled");
+}
+
+function nutClick() {
+  phone.value.classList.remove("scaled");
   userNutsCount.value += 1;
-  setTimeout(() => {
-    phone.value.classList.remove("scaled");
-  }, 100);
   const less4 = currentNut.value < 4 ? true : false;
   if (userNutsCount.value % 4 == 0) {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
