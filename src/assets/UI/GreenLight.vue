@@ -106,6 +106,7 @@ div {
   animation: blink 4s infinite;
   svg {
     width: 200%;
+    height: auto;
   }
 }
 @keyframes blink {

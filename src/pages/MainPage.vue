@@ -5,7 +5,6 @@
       src="/images/phone.png"
       class="phone"
       ref="phone"
-      id="phone"
       @touchstart="gotClick"
       @touchend="nutClick"
     />
@@ -55,13 +54,28 @@
             }"
           />
         </div>
+        <div class="energy_block">
+          <div class="energy_content">
+            <energySvg class="energy" />
+            <p>{{ currentEnergy }} / 1000</p>
+            <p class="energyIcon"><RocketsSvg /></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ThreeArrowsLeft, QuestsCount, WhiteLight, Logo, Cup } from "../assets";
+import {
+  ThreeArrowsLeft,
+  QuestsCount,
+  WhiteLight,
+  Logo,
+  RocketsSvg,
+  Cup,
+  energySvg,
+} from "../assets";
 import { onMounted, ref } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
 
@@ -70,13 +84,13 @@ const user = {
   nutsCount: 5908,
   image: "/images/avatar_url.png",
   questsCount: 5,
+  userEnergyCount: 1000,
 };
 
 let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
-
-const phoneEl = document.querySelector("#phone");
+let currentEnergy = ref(user.userEnergyCount);
 
 function addScale() {
   phone.value.style.scale = 1.2;
@@ -94,6 +108,7 @@ function gotClick() {
 function nutClick() {
   window.requestAnimationFrame(removeScale);
   userNutsCount.value += 1;
+  currentEnergy.value -= 1;
   const less4 = currentNut.value < 4;
   if (userNutsCount.value % 4 == 0) {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
@@ -116,10 +131,10 @@ onMounted(() => {});
   .phone {
     position: absolute;
     z-index: 21;
-    right: 5%;
-    width: 150px;
-    top: 48%;
-    transform: rotate(-30deg);
+    right: 12%;
+    width: 120px;
+    top: 45%;
+    transform: rotate(323deg);
   }
   .scaled {
     scale: 1.2;
@@ -217,6 +232,56 @@ onMounted(() => {});
       display: flex;
       flex-direction: column;
       align-items: center;
+      .energy_block {
+        margin-top: 20px;
+        width: 50%;
+        height: 55px;
+        background: linear-gradient(
+          253.35deg,
+          #ffffff -9.36%,
+          rgba(255, 255, 255, 0) 89.46%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 22;
+        border-radius: 70px;
+        padding: 1px;
+        .energy_content {
+          display: flex;
+          align-items: center;
+          width: calc(100% - 1px);
+          height: 55px;
+          background: var(--gray-bg);
+          border-radius: 70px;
+          justify-content: space-between;
+          .energy {
+            margin: 0 0 0 20px;
+            width: 15px;
+            height: 20px;
+          }
+          p:not(.energyIcon) {
+            margin-right: 4px;
+            width: max-content;
+            font-size: 14px;
+          }
+          .energyIcon {
+            height: 54px;
+            width: 54px;
+            border-radius: 70px;
+            box-shadow: 0px 0px 21.2px 0px #2cff74;
+            background: #2cff74;
+            border: 2px solid #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
       .nut_block {
         display: flex;
         height: 45%;
@@ -253,7 +318,7 @@ onMounted(() => {});
       }
       .logo,
       .nuts_info {
-        margin-top: 30px;
+        margin-top: 15px;
         z-index: 20;
       }
       .nuts_info {
