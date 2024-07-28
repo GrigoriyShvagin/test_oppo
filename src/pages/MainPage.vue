@@ -65,11 +65,6 @@ const user = {
   questsCount: 5,
 };
 
-const phone = ref(null);
-
-let currentNut = ref(1);
-let userNutsCount = ref(user.nutsCount);
-
 function gotClick() {
   phone.value.classList.add("scaled");
 }
@@ -84,6 +79,10 @@ function nutClick() {
 }
 
 onMounted(() => {
+  const phone = ref(null);
+
+  let currentNut = ref(1);
+  let userNutsCount = ref(user.nutsCount);
   let nutImage = document.querySelector(".nut_block");
   let phoneEl = document.querySelector("#phone");
   phoneEl.addEventListener("mouseup", () => {
