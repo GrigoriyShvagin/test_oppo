@@ -78,12 +78,21 @@ const phone = ref(null);
 
 const phoneEl = document.querySelector("#phone");
 
+function addScale() {
+  phone.value.style.scale = 1.2;
+  window.requestAnimationFrame(addScale);
+}
+function removeScale() {
+  phone.value.style.scale = 1.0;
+  window.requestAnimationFrame(removeScale);
+}
+
 function gotClick() {
-  phone.value.classList.add("scaled");
+  window.requestAnimationFrame(addScale);
 }
 
 function nutClick() {
-  phone.value.classList.remove("scaled");
+  window.requestAnimationFrame(removeScale);
   userNutsCount.value += 1;
   const less4 = currentNut.value < 4;
   if (userNutsCount.value % 4 == 0) {
@@ -91,9 +100,7 @@ function nutClick() {
   }
 }
 
-onMounted(() => {
-  console.log(phoneEl);
-});
+onMounted(() => {});
 </script>
 
 <style lang="scss" scoped>
@@ -223,7 +230,7 @@ onMounted(() => {
           z-index: 2;
         }
         .firstNut {
-          max-width: 100%;
+          width: 100%;
           height: auto;
         }
         .secondNut {
