@@ -107,6 +107,10 @@ function nutClick() {
     top: 48%;
     transform: rotate(-30deg);
     transition: 0.05s;
+    -webkit-transition: linear 0.05s;
+    -moz-transition: linear 0.05s;
+    -o-transition: linear 0.05s;
+    transition: linear 0.05s;
   }
   .scaled {
     scale: 1.2;
