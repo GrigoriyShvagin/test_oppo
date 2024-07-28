@@ -103,7 +103,6 @@ div {
   z-index: 0;
   left: -50%;
   max-width: 100%;
-  transition: 3s all;
   animation: blink 4s infinite;
   svg {
     width: 200%;
@@ -111,7 +110,7 @@ div {
 }
 @keyframes blink {
   50% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 </style>

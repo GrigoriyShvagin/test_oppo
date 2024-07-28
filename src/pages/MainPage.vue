@@ -98,12 +98,14 @@ function nutClick() {
   background: var(--main-bg);
   color: #fff;
   position: relative;
+  overflow: hidden;
   .phone {
     position: absolute;
     z-index: 21;
-    right: 0;
-    width: 220px;
-    top: 50%;
+    right: 5%;
+    width: 150px;
+    top: 48%;
+    transform: rotate(-30deg);
     transition: 0.05s;
   }
   .scaled {
