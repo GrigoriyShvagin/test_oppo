@@ -6,6 +6,8 @@
       class="phone"
       ref="phone"
       id="phone"
+      @mousedown="gotClick"
+      @mouseup="nutClick"
       @touchstart="gotClick"
       @touchend="nutClick"
     />
@@ -38,7 +40,13 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
+        <div
+          class="nut_block"
+          @mousedown="gotClick"
+          @mouseup="nutClick"
+          @touchstart="gotClick"
+          @touchend="nutClick"
+        >
           <Cup class="cup" />
           <GreenLight />
           <img
@@ -113,11 +121,6 @@ onMounted(() => {
     width: 150px;
     top: 48%;
     transform: rotate(-30deg);
-    transition: 0.05s;
-    -webkit-transition: linear 0.05s;
-    -moz-transition: linear 0.05s;
-    -o-transition: linear 0.05s;
-    transition: linear 0.05s;
   }
   .scaled {
     scale: 1.2;
