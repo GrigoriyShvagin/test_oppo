@@ -1,14 +1,7 @@
 <template>
   <div class="main">
     <WhiteLight />
-    <img
-      src="/images/phone.png"
-      class="phone"
-      alt=""
-      ref="phone"
-      @mousedown="gotClick()"
-      @mouseup="nutClick()"
-    />
+    <img src="/images/phone.png" class="phone" alt="" ref="phone" id="phone" />
     <div class="header">
       <div class="header_content">
         <div class="name_block">
@@ -38,7 +31,7 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div class="nut_block" @mousedown="gotClick()" @mouseup="nutClick()">
+        <div class="nut_block">
           <Cup class="cup" />
           <GreenLight />
           <img
@@ -62,7 +55,7 @@
 
 <script setup>
 import { ThreeArrowsLeft, QuestsCount, WhiteLight, Logo, Cup } from "../assets";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
 
 const user = {
@@ -89,6 +82,23 @@ function nutClick() {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
   }
 }
+
+onMounted(() => {
+  let nutImage = document.querySelector(".nut_block");
+  let phoneEl = document.querySelector("#phone");
+  phoneEl.addEventListener("mouseup", () => {
+    nutClick();
+  });
+  nutImage.addEventListener("mouseup", () => {
+    nutClick();
+  });
+  phoneEl.addEventListener("mousedown", () => {
+    gotClick();
+  });
+  nutImage.addEventListener("mousedown", () => {
+    gotClick();
+  });
+});
 </script>
 
 <style lang="scss" scoped>
