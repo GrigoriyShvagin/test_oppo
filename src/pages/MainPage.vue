@@ -1,6 +1,13 @@
 <template>
   <div class="main">
     <WhiteLight />
+    <img
+      src="/images/phone.png"
+      class="phone"
+      alt=""
+      ref="phone"
+      @click="nutClick()"
+    />
     <div class="header">
       <div class="header_content">
         <div class="name_block">
@@ -64,14 +71,17 @@ const user = {
   questsCount: 5,
 };
 
-const array = [window.innerWidth, window.innerHeight];
+const phone = ref(null);
 
-console.log(window.innerHeight, window.innerWidth);
 let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 
 function nutClick() {
+  phone.value.classList.add("scaled");
   userNutsCount.value += 1;
+  setTimeout(() => {
+    phone.value.classList.remove("scaled");
+  }, 100);
   const less4 = currentNut.value < 4 ? true : false;
   if (userNutsCount.value % 4 == 0) {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
@@ -88,6 +98,17 @@ function nutClick() {
   background: var(--main-bg);
   color: #fff;
   position: relative;
+  .phone {
+    position: absolute;
+    z-index: 21;
+    right: 0;
+    width: 220px;
+    top: 50%;
+    transition: 0.05s;
+  }
+  .scaled {
+    scale: 1.2;
+  }
   .header {
     padding: 10px 21px;
     display: flex;
@@ -105,7 +126,7 @@ function nutClick() {
         .name_info {
           display: flex;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
           img {
             width: 35px;
             height: 35px;
@@ -137,6 +158,7 @@ function nutClick() {
         width: 40%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         span {
           color: var(--dark-gray);
           opacity: 30%;
@@ -145,10 +167,10 @@ function nutClick() {
         p {
           display: flex;
           position: relative;
-          margin-top: 10px;
           font-weight: 700;
           font-size: 48px;
-          line-height: 39px;
+          line-height: 45px;
+          align-items: center;
         }
         img {
           margin-top: 2px;
