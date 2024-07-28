@@ -1,7 +1,13 @@
 <template>
   <div class="main">
     <WhiteLight />
-    <img src="/images/phone.png" class="phone" alt="" ref="phone" id="phone" />
+    <img
+      src="/images/phone.png"
+      class="phone"
+      ref="phone"
+      @mousedown="gotClick"
+      @mouseup="nutClick"
+    />
     <div class="header">
       <div class="header_content">
         <div class="name_block">
@@ -31,7 +37,7 @@
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
-        <div class="nut_block">
+        <div class="nut_block" @mousedown="gotClick" @mouseup="nutClick">
           <Cup class="cup" />
           <GreenLight />
           <img
@@ -65,6 +71,10 @@ const user = {
   questsCount: 5,
 };
 
+let currentNut = ref(1);
+let userNutsCount = ref(user.nutsCount);
+const phone = ref(null);
+
 function gotClick() {
   phone.value.classList.add("scaled");
 }
@@ -78,26 +88,7 @@ function nutClick() {
   }
 }
 
-onMounted(() => {
-  const phone = ref(null);
-
-  let currentNut = ref(1);
-  let userNutsCount = ref(user.nutsCount);
-  let nutImage = document.querySelector(".nut_block");
-  let phoneEl = document.querySelector("#phone");
-  phoneEl.addEventListener("mouseup", () => {
-    nutClick();
-  });
-  nutImage.addEventListener("mouseup", () => {
-    nutClick();
-  });
-  phoneEl.addEventListener("mousedown", () => {
-    gotClick();
-  });
-  nutImage.addEventListener("mousedown", () => {
-    gotClick();
-  });
-});
+onMounted(() => {});
 </script>
 
 <style lang="scss" scoped>
