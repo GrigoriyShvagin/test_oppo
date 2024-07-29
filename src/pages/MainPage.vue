@@ -422,9 +422,8 @@ onMounted(() => {});
         .nutImage {
           display: none;
           position: absolute;
-          align-self: flex-start;
           z-index: 2;
-          width: 100%;
+          max-width: 100%;
         }
         .firstNut {
           width: 100%;

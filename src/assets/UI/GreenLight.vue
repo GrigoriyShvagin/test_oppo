@@ -103,9 +103,11 @@ div {
   z-index: 0;
   left: -50%;
   width: 100%;
+  max-width: 100%;
   animation: blink 4s infinite;
   svg {
     width: 200%;
+    max-width: 200%;
     height: auto;
     align-self: flex-start;
   }
