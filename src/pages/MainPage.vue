@@ -135,7 +135,6 @@ function oppa2Anim() {
   oppa2.value.style.transition = "transform 0.5s ease-in";
   oppa2.value.style.transform = "translate3d(0,-100px,0)";
   oppa2.value.style.opacity = 1.0;
-  oppa2.value.style.zIndex = 2;
   setTimeout(deleteOppa2, 600);
 }
 
