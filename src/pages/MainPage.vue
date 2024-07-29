@@ -51,14 +51,14 @@
             v-for="item in 4"
             :key="item"
             :src="'/images/NutStage' + item + '.png'"
-          />
-          <!-- :class="{
+            :class="{
               currentNut: currentNut == item,
               firstNut: item == 1,
               secondNut: item == 2,
               thirdNut: item == 3,
               fourthNut: item == 4,
-            }" -->
+            }"
+          />
         </div>
         <div class="energy_block">
           <div class="energy_content">
@@ -120,51 +120,51 @@ function removeScale() {
 function deleteOppa1() {
   oppa1.value.style.transition = "none";
   oppa1.value.style.opacity = 0;
-  oppa1.value.style.top = "50%";
+  oppa1.value.style.transform = "none";
   // oppa1.value.style.left = "15%";
 }
 function oppa1Anim() {
-  oppa1.value.style.transition = "top 0.4s, left 0.45s ease-in";
+  oppa1.value.style.transition = "transform 0.4s ease-in";
+  oppa1.value.style.transform = "translate3d(0,-100%,0)";
   oppa1.value.style.opacity = 1.0;
-  oppa1.value.style.top = "20%";
   // oppa1.value.style.left = "70%";
   setTimeout(deleteOppa1, 500);
 }
 
 function deleteOppa2() {
   oppa2.value.style.transition = "none";
+  oppa2.value.style.transform = "none";
   oppa2.value.style.opacity = 0;
-  oppa2.value.style.top = "50%";
 }
 function oppa2Anim() {
-  oppa2.value.style.transition = "top 0.5s ease-in";
+  oppa2.value.style.transition = "transform 0.5s ease-in";
+  oppa2.value.style.transform = "translate3d(0,-70%,0)";
   oppa2.value.style.opacity = 1.0;
   oppa2.value.style.zIndex = 2;
-  oppa2.value.style.top = "20%";
   setTimeout(deleteOppa2, 600);
 }
 
 function deleteOppa3() {
   oppa3.value.style.transition = "none";
+  oppa3.value.style.transform = "none";
   oppa3.value.style.opacity = 0;
-  oppa3.value.style.top = "40%";
 }
 function oppa3Anim() {
-  oppa3.value.style.transition = "top 0.5s ease-in";
+  oppa3.value.style.transition = "transform 0.5s ease-in";
+  oppa3.value.style.transform = "translate3d(0,-100%,0)";
   oppa3.value.style.opacity = 1.0;
-  oppa3.value.style.top = "10%";
   setTimeout(deleteOppa3, 600);
 }
 
 function deleteOppa4() {
   oppa4.value.style.transition = "none";
+  oppa4.value.style.transform = "none";
   oppa4.value.style.opacity = 0;
-  oppa4.value.style.top = "55%";
 }
 function oppa4Anim() {
-  oppa4.value.style.transition = "top 0.4s ease-in";
+  oppa4.value.style.transition = "transform 0.5s ease-in";
+  oppa4.value.style.transform = "translate3d(0,-100%,0)";
   oppa4.value.style.opacity = 1.0;
-  oppa4.value.style.top = "10%";
   setTimeout(deleteOppa4, 500);
 }
 
