@@ -45,7 +45,7 @@
         </div>
         <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
-          <GreenLight />
+          <GreenLight class="green_light" />
           <img
             class="nutImage"
             v-for="item in 4"
@@ -419,10 +419,14 @@ onMounted(() => {});
         position: relative;
         align-items: center;
         justify-content: center;
+        .green_light {
+          width: 200%;
+        }
         .nutImage {
           display: none;
           position: absolute;
           z-index: 2;
+          width: 100%;
         }
         .firstNut {
           width: 100%;
