@@ -124,8 +124,8 @@ function deleteOppa1() {
   // oppa1.value.style.left = "15%";
 }
 function oppa1Anim() {
-  oppa1.value.style.transition = "transform 0.4s ease-in";
-  oppa1.value.style.transform = "translate3d(0,-100%,0)";
+  oppa1.value.style.transition = "transform 0.4s linear";
+  oppa1.value.style.transform = "translate3d(0,-150px,0)";
   oppa1.value.style.opacity = 1.0;
   // oppa1.value.style.left = "70%";
   setTimeout(deleteOppa1, 500);
@@ -138,7 +138,7 @@ function deleteOppa2() {
 }
 function oppa2Anim() {
   oppa2.value.style.transition = "transform 0.5s ease-in";
-  oppa2.value.style.transform = "translate3d(0,-70%,0)";
+  oppa2.value.style.transform = "translate3d(0,-100px,0)";
   oppa2.value.style.opacity = 1.0;
   oppa2.value.style.zIndex = 2;
   setTimeout(deleteOppa2, 600);
@@ -151,7 +151,7 @@ function deleteOppa3() {
 }
 function oppa3Anim() {
   oppa3.value.style.transition = "transform 0.5s ease-in";
-  oppa3.value.style.transform = "translate3d(0,-100%,0)";
+  oppa3.value.style.transform = "translate3d(0,-150px,0)";
   oppa3.value.style.opacity = 1.0;
   setTimeout(deleteOppa3, 600);
 }
@@ -162,8 +162,8 @@ function deleteOppa4() {
   oppa4.value.style.opacity = 0;
 }
 function oppa4Anim() {
-  oppa4.value.style.transition = "transform 0.5s ease-in";
-  oppa4.value.style.transform = "translate3d(0,-100%,0)";
+  oppa4.value.style.transition = "transform 0.4s ease-in";
+  oppa4.value.style.transform = "translate3d(0,-230px,0)";
   oppa4.value.style.opacity = 1.0;
   setTimeout(deleteOppa4, 500);
 }
