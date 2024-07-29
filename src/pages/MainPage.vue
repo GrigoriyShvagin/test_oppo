@@ -51,14 +51,14 @@
             v-for="item in 4"
             :key="item"
             :src="'/images/NutStage' + item + '.png'"
-            :class="{
+          />
+          <!-- :class="{
               currentNut: currentNut == item,
               firstNut: item == 1,
               secondNut: item == 2,
               thirdNut: item == 3,
               fourthNut: item == 4,
-            }"
-          />
+            }" -->
         </div>
         <div class="energy_block">
           <div class="energy_content">
