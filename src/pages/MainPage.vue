@@ -109,12 +109,11 @@ const oppa3 = ref(null);
 const oppa4 = ref(null);
 
 function addScale() {
-  phone.value.style.scale = 1.2;
-  window.requestAnimationFrame(addScale);
+  phone.value.style.transform = "scale(1.2) rotate(323deg)";
 }
 function removeScale() {
-  phone.value.style.scale = 1.0;
-  window.requestAnimationFrame(removeScale);
+  phone.value.style.transform = "scale(1.0) rotate(323deg)";
+  console.log(phone.value.style);
 }
 
 function deleteOppa1() {
@@ -215,7 +214,8 @@ onMounted(() => {});
     transform: rotate(323deg);
   }
   .scaled {
-    scale: 1.2;
+    transform: scale(1.2);
+    -webkit-transform: scale(0.9, 0.9);
   }
   .header {
     padding: 10px 21px;
@@ -285,7 +285,7 @@ onMounted(() => {});
           max-height: 48px;
           max-width: 48px;
           min-width: 8vw;
-          min-height: 8vw;
+          min-height: auto;
         }
       }
     }
