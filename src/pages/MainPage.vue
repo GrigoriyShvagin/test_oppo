@@ -46,7 +46,7 @@
         <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
           <GreenLight />
-          <img class="nutImage" v-for="item in 4" :key="item" />
+          <div class="nutImage" v-for="item in 4" :key="item"></div>
           <!-- :src="'/images/NutStage' + item + '.png'"
             :class="{
               currentNut: currentNut == item,
