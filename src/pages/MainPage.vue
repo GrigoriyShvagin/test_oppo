@@ -419,12 +419,10 @@ onMounted(() => {});
         position: relative;
         align-items: center;
         justify-content: center;
-        .green_light {
-          width: 200%;
-        }
         .nutImage {
           display: none;
           position: absolute;
+          align-self: flex-start;
           z-index: 2;
           width: 100%;
         }

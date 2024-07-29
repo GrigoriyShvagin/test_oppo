@@ -102,11 +102,12 @@ div {
   position: absolute;
   z-index: 0;
   left: -50%;
-  max-width: 100%;
+  width: 100%;
   animation: blink 4s infinite;
   svg {
     width: 200%;
     height: auto;
+    align-self: flex-start;
   }
 }
 @keyframes blink {
