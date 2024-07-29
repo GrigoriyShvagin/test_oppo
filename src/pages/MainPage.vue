@@ -33,6 +33,12 @@
     </div>
     <div class="clicker_block">
       <div class="clicker_content">
+        <span class="oppa1" ref="oppa1">
+          <Oppa1 />
+        </span>
+        <span class="oppa2" ref="oppa2"><Oppa2 /></span>
+        <span class="oppa3" ref="oppa3"><Oppa3 /></span>
+        <span class="oppa4" ref="oppa4"><Oppa4 /></span>
         <Logo class="logo" />
         <div class="nuts_info">
           <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
@@ -74,7 +80,11 @@ import {
   Logo,
   RocketsSvg,
   Cup,
+  Oppa1,
   energySvg,
+  Oppa2,
+  Oppa3,
+  Oppa4,
 } from "../assets";
 import { onMounted, ref } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
@@ -91,6 +101,12 @@ let currentNut = ref(1);
 let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
 let currentEnergy = ref(user.userEnergyCount);
+let currentOppa = ref(0);
+
+const oppa1 = ref(null);
+const oppa2 = ref(null);
+const oppa3 = ref(null);
+const oppa4 = ref(null);
 
 function addScale() {
   phone.value.style.scale = 1.2;
@@ -101,18 +117,80 @@ function removeScale() {
   window.requestAnimationFrame(removeScale);
 }
 
+function deleteOppa1() {
+  oppa1.value.style.transition = "none";
+  oppa1.value.style.opacity = 0;
+  oppa1.value.style.top = "50%";
+  // oppa1.value.style.left = "15%";
+}
+function oppa1Anim() {
+  oppa1.value.style.transition = "top 0.4s, left 0.45s ease-in";
+  oppa1.value.style.opacity = 1.0;
+  oppa1.value.style.top = "20%";
+  // oppa1.value.style.left = "70%";
+  setTimeout(deleteOppa1, 500);
+}
+
+function deleteOppa2() {
+  oppa2.value.style.transition = "none";
+  oppa2.value.style.opacity = 0;
+  oppa2.value.style.top = "50%";
+}
+function oppa2Anim() {
+  oppa2.value.style.transition = "top 0.5s ease-in";
+  oppa2.value.style.opacity = 1.0;
+  oppa2.value.style.zIndex = 2;
+  oppa2.value.style.top = "20%";
+  setTimeout(deleteOppa2, 600);
+}
+
+function deleteOppa3() {
+  oppa3.value.style.transition = "none";
+  oppa3.value.style.opacity = 0;
+  oppa3.value.style.top = "40%";
+}
+function oppa3Anim() {
+  oppa3.value.style.transition = "top 0.5s ease-in";
+  oppa3.value.style.opacity = 1.0;
+  oppa3.value.style.top = "10%";
+  setTimeout(deleteOppa3, 600);
+}
+
+function deleteOppa4() {
+  oppa4.value.style.transition = "none";
+  oppa4.value.style.opacity = 0;
+  oppa4.value.style.top = "55%";
+}
+function oppa4Anim() {
+  oppa4.value.style.transition = "top 0.4s ease-in";
+  oppa4.value.style.opacity = 1.0;
+  oppa4.value.style.top = "10%";
+  setTimeout(deleteOppa4, 500);
+}
+
 function gotClick() {
   window.requestAnimationFrame(addScale);
 }
 
 function nutClick() {
-  window.requestAnimationFrame(removeScale);
+  const less4 = currentNut.value < 4;
+
   userNutsCount.value += 1;
   currentEnergy.value -= 1;
-  const less4 = currentNut.value < 4;
+
+  if (userNutsCount.value % 2 == 0) {
+    currentOppa.value < 4 ? (currentOppa.value += 1) : (currentOppa.value = 0);
+    currentOppa.value == 1 ? oppa1Anim() : null;
+    currentOppa.value == 2 ? oppa2Anim() : null;
+    currentOppa.value == 3 ? oppa3Anim() : null;
+    currentOppa.value == 4 ? oppa4Anim() : null;
+  }
+
   if (userNutsCount.value % 4 == 0) {
     less4 ? (currentNut.value += 1) : (currentNut.value = 1);
   }
+
+  window.requestAnimationFrame(removeScale);
 }
 
 onMounted(() => {});
@@ -232,6 +310,51 @@ onMounted(() => {});
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      .oppa1 {
+        z-index: 10000;
+        opacity: 0;
+        top: 50%;
+        left: 15%;
+        position: absolute;
+      }
+      .oppa1 svg {
+        width: 150px;
+        height: 150px;
+      }
+      .oppa2 {
+        z-index: 10000;
+        top: 55%;
+        left: 24%;
+        opacity: 0;
+        position: absolute;
+        svg {
+          width: 140px;
+          height: 140px;
+        }
+      }
+      .oppa3 {
+        z-index: 30;
+        top: 40%;
+        right: 15%;
+        position: absolute;
+        opacity: 0;
+        svg {
+          width: 170px;
+          height: 170px;
+        }
+      }
+      .oppa4 {
+        z-index: 30;
+        top: 55%;
+        right: 20%;
+        position: absolute;
+        opacity: 0;
+        svg {
+          width: 170px;
+          height: 170px;
+        }
+      }
       .energy_block {
         margin-top: 20px;
         width: 50%;
