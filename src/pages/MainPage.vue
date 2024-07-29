@@ -414,6 +414,7 @@ onMounted(() => {});
       }
       .nut_block {
         display: flex;
+        width: auto;
         height: 45%;
         z-index: 5;
         position: relative;
