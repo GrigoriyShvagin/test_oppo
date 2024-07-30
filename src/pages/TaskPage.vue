@@ -124,6 +124,7 @@ const allTasks = {
       flex-direction: column;
       width: 100%;
       overflow: scroll;
+      scrollbar-width: none;
       max-height: 40%;
       .task {
         min-height: 40px;
