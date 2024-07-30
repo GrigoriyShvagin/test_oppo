@@ -42,6 +42,7 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
     justify-content: space-around;
     background: var(--gray-bg);
     border-radius: 10px 10px 0 0;
+    overflow: hidden;
     p {
       position: relative;
       font-size: 10px;
