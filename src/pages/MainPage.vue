@@ -59,14 +59,6 @@
               fourthNut: item == 4,
             }"
           />
-          <!-- :src="'/images/NutStage' + item + '.png'"
-            :class="{
-              currentNut: currentNut == item,
-              firstNut: item == 1,
-              secondNut: item == 2,
-              thirdNut: item == 3,
-              fourthNut: item == 4,
-            }" -->
         </div>
         <div class="energy_block">
           <div class="energy_content">
@@ -127,13 +119,11 @@ function deleteOppa1() {
   oppa1.value.style.transition = "none";
   oppa1.value.style.opacity = 0;
   oppa1.value.style.transform = "none";
-  // oppa1.value.style.left = "15%";
 }
 function oppa1Anim() {
   oppa1.value.style.transition = "transform 0.4s linear";
   oppa1.value.style.transform = "translate3d(0,-150px,0)";
   oppa1.value.style.opacity = 1.0;
-  // oppa1.value.style.left = "70%";
   setTimeout(deleteOppa1, 500);
 }
 
