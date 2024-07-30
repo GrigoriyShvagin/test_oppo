@@ -204,9 +204,9 @@ onMounted(() => {});
   .phone {
     position: absolute;
     z-index: 21;
-    right: 12%;
-    width: 120px;
-    top: 45%;
+    right: 5%;
+    width: 160px;
+    top: 38%;
     transform: rotate(323deg);
   }
   .scaled {
@@ -414,6 +414,7 @@ onMounted(() => {});
           position: absolute;
           z-index: 2;
           max-width: 100%;
+          margin-right: 60px;
         }
         .firstNut {
           width: 100%;
@@ -438,6 +439,7 @@ onMounted(() => {});
           width: 80%;
           height: 80%;
           z-index: 2;
+          margin-right: 60px;
         }
       }
       .logo,
