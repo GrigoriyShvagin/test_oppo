@@ -111,6 +111,7 @@ const allTasks = {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  position: relative;
   .content {
     position: relative;
     display: flex;
