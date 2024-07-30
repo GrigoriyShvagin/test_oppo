@@ -1,16 +1,20 @@
 <template>
   <div class="main">
     <div class="footer_content">
-      <p>f</p>
-      <p>f</p>
-      <p>f</p>
-      <p>f</p>
-      <p>f</p>
+      <p class="current_menu">
+        <Crack class="crack" /><span class="crack_text">Колоть!</span>
+      </p>
+      <p><Tasks /><span>Задания</span></p>
+      <p><Friends /><span>Друзья</span></p>
+      <p><Exchange /><span>Обмен</span></p>
+      <p><Rating /><span>Рейтинг</span></p>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
+</script>
 
 <style lang="scss" scoped>
 .main {
@@ -38,6 +42,30 @@
     justify-content: space-around;
     background: var(--gray-bg);
     border-radius: 10px 10px 0 0;
+    p {
+      position: relative;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      span {
+        color: #fafafa;
+      }
+      svg:not(.crack) {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .crack {
+    position: absolute;
+    bottom: -50%;
+    left: -70%;
+    width: 100px;
+    height: auto;
+  }
+  .crack_text {
+    margin-top: 16px;
   }
 }
 </style>

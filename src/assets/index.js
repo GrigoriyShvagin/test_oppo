@@ -10,9 +10,19 @@ import Oppa1 from "./UI/Oppa1.vue";
 import Oppa2 from "./UI/Oppa2.vue";
 import Oppa3 from "./UI/Oppa3.vue";
 import Oppa4 from "./UI/Oppa4.vue";
+import Crack from "./UI/Crack.vue";
+import Tasks from "./UI/Tasks.vue";
+import Friends from "./UI/Friends.vue";
+import Exchange from "./UI/Exchange.vue";
+import Rating from "./UI/Rating.vue";
 
 export {
   WhiteLight,
+  Rating,
+  Exchange,
+  Tasks,
+  Crack,
+  Friends,
   Oppa4,
   Oppa3,
   Oppa2,
