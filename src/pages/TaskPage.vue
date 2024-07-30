@@ -15,6 +15,27 @@
           Выполненные
         </p>
       </div>
+      <div class="tasks_list">
+        <div
+          class="task"
+          v-if="currMenu == 'New'"
+          v-for="item in allTasks.new"
+          :key="item"
+        >
+          <img
+            class="task_img"
+            :src="'/images/tasks/Task' + item.id + '.png'"
+            alt=""
+          />
+          <div class="task_content">
+            <p class="task_text">{{ item.description }}</p>
+            <p class="nutsCount">
+              + {{ item.nuts }} <img src="/images/NutStage1.png" alt="" />
+            </p>
+          </div>
+          <button>Начать</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +44,63 @@
 import { ref } from "vue";
 import { WhiteBorder } from "../assets";
 let currMenu = ref("New");
+
+const allTasks = {
+  new: [
+    {
+      id: 1,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+    {
+      id: 2,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+    {
+      id: 3,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+    {
+      id: 4,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+    {
+      id: 5,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+  ],
+  made: [
+    {
+      id: 1,
+      description: "Сделано",
+      nuts: 1000,
+    },
+    {
+      id: 2,
+      description: "Сделано",
+      nuts: 1000,
+    },
+    {
+      id: 3,
+      description: "Сделано",
+      nuts: 1000,
+    },
+    {
+      id: 4,
+      description: "Сделано",
+      nuts: 1000,
+    },
+    {
+      id: 5,
+      description: "Сделано",
+      nuts: 1000,
+    },
+  ],
+};
 </script>
 
 <style lang="scss" scoped>
@@ -41,6 +119,66 @@ let currMenu = ref("New");
     width: 88%;
     height: 100%;
     padding-top: 50%;
+    .tasks_list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow: scroll;
+      max-height: 40%;
+      .task {
+        min-height: 40px;
+        max-height: 40px;
+        background: #242424;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - 20px);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        .task_img {
+          width: 40px;
+          height: auto;
+        }
+        .task_content {
+          display: flex;
+          flex-direction: column;
+          width: 60%;
+          .task_text {
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 3%;
+          }
+          .nutsCount {
+            position: relative;
+            font-size: 12px;
+            line-height: 14px;
+            font-weight: 500;
+            color: #fff;
+            margin-top: 5px;
+            img {
+              width: 30px;
+              height: 30px;
+              left: 35px;
+              bottom: -8px;
+              position: absolute;
+            }
+          }
+        }
+        button {
+          background: #2cff74;
+          color: #2c9a4c;
+          font-size: 10px;
+          font-weight: 700;
+          line-height: 9px;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+        }
+      }
+    }
     .header_text {
       margin-bottom: 15px;
       color: #fff;
@@ -70,6 +208,7 @@ let currMenu = ref("New");
         display: flex;
         justify-content: center;
         border-radius: 8px;
+        transition: all 0.3s ease;
       }
       .active {
         background: #d9d9d9;
