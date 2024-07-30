@@ -1,0 +1,58 @@
+<template>
+  <svg
+    width="616"
+    height="523"
+    viewBox="0 0 616 523"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <ellipse
+      cx="306.617"
+      cy="201.239"
+      rx="93.2756"
+      ry="93.8341"
+      fill="#D9D9D9"
+      fill-opacity="0.1"
+    />
+    <ellipse
+      cx="306.059"
+      cy="200.122"
+      rx="105.005"
+      ry="106.122"
+      fill="#D9D9D9"
+      fill-opacity="0.1"
+    />
+    <g filter="url(#filter0_f_43_262)">
+      <circle
+        cx="303.266"
+        cy="210.734"
+        r="112.266"
+        fill="#D9D9D9"
+        fill-opacity="0.6"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_f_43_262"
+        x="-9"
+        y="-101.532"
+        width="624.532"
+        height="624.532"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feGaussianBlur
+          stdDeviation="100"
+          result="effect1_foregroundBlur_43_262"
+        />
+      </filter>
+    </defs>
+  </svg>
+</template>

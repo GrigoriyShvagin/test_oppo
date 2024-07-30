@@ -104,6 +104,7 @@ div {
   left: -50%;
   width: 100%;
   max-width: 100%;
+  animation: blink 4s infinite;
   svg {
     width: 200%;
     max-width: 200%;

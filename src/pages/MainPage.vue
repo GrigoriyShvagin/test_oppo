@@ -121,7 +121,6 @@ function addScale() {
 }
 function removeScale() {
   phone.value.style.transform = "scale(1.0) rotate(323deg)";
-  console.log(phone.value.style);
 }
 
 function deleteOppa1() {

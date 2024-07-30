@@ -15,9 +15,11 @@ import Tasks from "./UI/Tasks.vue";
 import Friends from "./UI/Friends.vue";
 import Exchange from "./UI/Exchange.vue";
 import Rating from "./UI/Rating.vue";
+import WhiteBorder from "./UI/WhiteBorder.vue";
 
 export {
   WhiteLight,
+  WhiteBorder,
   Rating,
   Exchange,
   Tasks,

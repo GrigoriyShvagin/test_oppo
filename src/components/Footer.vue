@@ -1,10 +1,10 @@
 <template>
   <div class="main">
     <div class="footer_content">
-      <p class="current_menu">
+      <p class="current_menu" @click="$router.push('/')">
         <Crack class="crack" /><span class="crack_text">Колоть!</span>
       </p>
-      <p><Tasks /><span>Задания</span></p>
+      <p @click="$router.push('/tasks')"><Tasks /><span>Задания</span></p>
       <p><Friends /><span>Друзья</span></p>
       <p><Exchange /><span>Обмен</span></p>
       <p><Rating /><span>Рейтинг</span></p>
