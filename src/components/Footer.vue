@@ -22,10 +22,10 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
   align-items: center;
   justify-content: center;
   position: fixed;
-  bottom: 0;
+  bottom: 0%;
   height: 50px;
   width: 90vw;
-  left: 5vw;
+  left: 5%;
   padding: 1px;
   border-radius: 10px 10px 0 0;
   background: linear-gradient(
