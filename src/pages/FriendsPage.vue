@@ -40,6 +40,16 @@
 import { Present, IconInvite, WhiteLight } from "../assets";
 
 const friends = [];
+
+onMounted(() => {
+  document.removeEventListener(
+    "touchmove",
+    function (event) {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+});
 </script>
 
 <style lang="scss" scoped>

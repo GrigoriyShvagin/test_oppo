@@ -11,7 +11,18 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import { EarnGreen } from "../assets";
+
+onMounted(() => {
+  document.removeEventListener(
+    "touchmove",
+    function (event) {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+});
 </script>
 
 <style lang="scss" scoped>

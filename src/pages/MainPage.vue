@@ -197,15 +197,6 @@ onMounted(() => {
     { passive: false }
   );
 });
-onUnmounted(() => {
-  document.removeEventListener(
-    "touchmove",
-    function (event) {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-});
 </script>
 
 <style lang="scss" scoped>
