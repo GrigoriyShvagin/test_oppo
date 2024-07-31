@@ -33,6 +33,7 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
     #ffffff -9.36%,
     rgba(255, 255, 255, 0) 89.46%
   );
+  overflow: hidden;
   z-index: 20;
   .footer_content {
     width: 100%;

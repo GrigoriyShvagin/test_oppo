@@ -13,6 +13,7 @@ import Footer from "../components/Footer.vue";
 .content {
   width: 100vw;
   height: calc(100vh - env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
   overflow: hidden;
 }
 </style>
