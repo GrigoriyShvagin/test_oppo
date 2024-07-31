@@ -9,6 +9,18 @@ const routes = [
     path: "/tasks",
     component: () => import("../pages/TaskPage.vue"),
   },
+  {
+    path: "/friends",
+    component: () => import("../pages/FriendsPage.vue"),
+  },
+  {
+    path: "/earnings",
+    component: () => import("../pages/EarnPage.vue"),
+  },
+  {
+    path: "/rating",
+    component: () => import("../pages/RatingPage.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -101,7 +101,7 @@
 div {
   position: absolute;
   z-index: 0;
-  left: -50%;
+  left: -65%;
   width: 100%;
   max-width: 100%;
   animation: blink 4s infinite;

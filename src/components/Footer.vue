@@ -5,9 +5,9 @@
         <Crack class="crack" /><span class="crack_text">Колоть!</span>
       </p>
       <p @click="$router.push('/tasks')"><Tasks /><span>Задания</span></p>
-      <p><Friends /><span>Друзья</span></p>
-      <p><Exchange /><span>Обмен</span></p>
-      <p><Rating /><span>Рейтинг</span></p>
+      <p @click="$router.push('/friends')"><Friends /><span>Друзья</span></p>
+      <p @click="$router.push('/earnings')"><Exchange /><span>Обмен</span></p>
+      <p @click="$router.push('/rating')"><Rating /><span>Рейтинг</span></p>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
   height: 50px;
   width: 90vw;
   left: 5%;
-  padding: 1px;
+  padding: 1px 1px 0 1px;
   border-radius: 10px 10px 0 0;
   background: linear-gradient(
     253.35deg,

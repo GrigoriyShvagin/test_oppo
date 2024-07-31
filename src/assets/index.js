@@ -16,8 +16,14 @@ import Friends from "./UI/Friends.vue";
 import Exchange from "./UI/Exchange.vue";
 import Rating from "./UI/Rating.vue";
 import WhiteBorder from "./UI/WhiteBorder.vue";
+import Present from "./UI/Present.vue";
+import IconInvite from "./UI/IconInvite.vue";
+import EarnGreen from "./UI/EarnGreen.vue";
 
 export {
+  Present,
+  EarnGreen,
+  IconInvite,
   WhiteLight,
   WhiteBorder,
   Rating,

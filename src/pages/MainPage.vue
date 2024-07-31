@@ -214,6 +214,7 @@ onMounted(() => {});
     -webkit-transform: scale(0.9, 0.9);
   }
   .header {
+    height: 80px;
     padding: 10px 21px;
     display: flex;
     justify-content: center;
@@ -291,7 +292,7 @@ onMounted(() => {});
     padding: 2px 0 0 0;
     margin-top: 20px;
     z-index: 2;
-    height: calc(90%);
+    height: calc(100% - 80px);
     border-radius: 41px 41px 0 0;
     background: radial-gradient(
       77.45% 77.45% at 50.08% 1.26%,
