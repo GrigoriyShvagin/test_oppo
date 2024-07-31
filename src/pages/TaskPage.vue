@@ -105,8 +105,8 @@ const allTasks = {
 
 <style lang="scss" scoped>
 .main {
-  width: 100dvw;
-  height: 100dvh;
+  width: 100%;
+  height: 100%;
   background-color: #060606;
   display: flex;
   justify-content: center;
