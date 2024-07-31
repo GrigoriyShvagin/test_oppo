@@ -53,6 +53,9 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
       span {
         color: #fafafa;
       }
+      span:not(.crack_text) {
+        margin-top: 5px;
+      }
       svg:not(.crack) {
         width: 16px;
         height: 16px;
@@ -61,12 +64,13 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
   }
   .crack {
     position: absolute;
-    bottom: -50%;
+    bottom: -35%;
     left: -70%;
     width: 100px;
     height: auto;
   }
   .crack_text {
+    padding: 5px 0 0 0;
     margin-top: 16px;
   }
 }

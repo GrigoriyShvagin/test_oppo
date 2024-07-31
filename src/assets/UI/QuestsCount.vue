@@ -32,8 +32,6 @@ onMounted(() => {
   border: none;
   border-radius: 10px;
   align-items: center;
-
-  margin: 0 0 12px 0;
 }
 .gradient {
   width: 100%;
