@@ -43,18 +43,7 @@
 <script setup>
 import { ref } from "vue";
 import { WhiteBorder } from "../assets";
-import { onMounted } from "vue";
 let currMenu = ref("New");
-
-onMounted(() => {
-  document.removeEventListener(
-    "touchmove",
-    function (event) {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-});
 
 const allTasks = {
   new: [

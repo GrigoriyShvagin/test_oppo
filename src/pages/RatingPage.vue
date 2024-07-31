@@ -54,16 +54,6 @@ const leadersList = [
   { id: 5, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
   { id: 6, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
 ];
-
-onMounted(() => {
-  document.removeEventListener(
-    "touchmove",
-    function (event) {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-});
 </script>
 
 <style lang="scss" scoped>

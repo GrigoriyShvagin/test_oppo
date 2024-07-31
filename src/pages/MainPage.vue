@@ -189,7 +189,7 @@ function nutClick() {
 }
 
 onMounted(() => {
-  document.addEventListener(
+  document.querySelector(".clicker_block").addEventListener(
     "touchmove",
     function (event) {
       event.preventDefault();

@@ -38,19 +38,8 @@
 
 <script setup>
 import { Present, IconInvite, WhiteLight } from "../assets";
-import { onMounted } from "vue";
 
 const friends = [];
-
-onMounted(() => {
-  document.removeEventListener(
-    "touchmove",
-    function (event) {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-});
 </script>
 
 <style lang="scss" scoped>
