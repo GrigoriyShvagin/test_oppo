@@ -181,7 +181,7 @@ const leadersList = [
       }
     }
     p {
-      font-size: 15vw;
+      font-size: 10vw;
       font-weight: 700;
       color: white;
       margin-bottom: 30px;
