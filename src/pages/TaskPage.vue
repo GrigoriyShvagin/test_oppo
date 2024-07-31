@@ -43,6 +43,7 @@
 <script setup>
 import { ref } from "vue";
 import { WhiteBorder } from "../assets";
+import { onMounted } from "vue";
 let currMenu = ref("New");
 
 onMounted(() => {

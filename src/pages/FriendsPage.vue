@@ -38,6 +38,7 @@
 
 <script setup>
 import { Present, IconInvite, WhiteLight } from "../assets";
+import { onMounted } from "vue";
 
 const friends = [];
 

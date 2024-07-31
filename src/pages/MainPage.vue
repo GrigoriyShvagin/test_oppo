@@ -86,7 +86,7 @@ import {
   Oppa3,
   Oppa4,
 } from "../assets";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
 
 const user = {

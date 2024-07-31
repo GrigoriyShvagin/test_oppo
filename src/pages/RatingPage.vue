@@ -44,6 +44,7 @@
 
 <script setup>
 import { WhiteLight, QuestsCount } from "../assets";
+import { onMounted } from "vue";
 
 const leadersList = [
   { id: 1, name: "Benjamin", photo: "/images/avatar_url.png", nutsCount: 322 },
