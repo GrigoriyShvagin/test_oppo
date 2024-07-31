@@ -188,7 +188,15 @@ function nutClick() {
   window.requestAnimationFrame(removeScale);
 }
 
-onMounted(() => {});
+onMounted(() => {
+  document.addEventListener(
+    "touchmove",
+    function (event) {
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+});
 </script>
 
 <style lang="scss" scoped>
