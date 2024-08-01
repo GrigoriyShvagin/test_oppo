@@ -7,6 +7,7 @@
       ref="phone"
       @touchstart="gotClick"
       @touchend="nutClick"
+      @click="vibrate"
     />
     <div class="header">
       <div class="header_content">
@@ -31,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="clicker_block">
+    <div class="clicker_block" @click="vibrate">
       <div class="clicker_content">
         <span class="oppa1" ref="oppa1">
           <Oppa1 />
@@ -165,7 +166,14 @@ function oppa4Anim() {
 
 function gotClick() {
   window.requestAnimationFrame(addScale);
-  window.navigator.vibrate(100);
+}
+function vibrate() {
+  console.log(1);
+  if ("vibrate" in navigator) {
+    navigator.vibrate(200); // Вибрация на 200 мс
+  } else {
+    phone.value.classList.add("none");
+  }
 }
 
 function nutClick() {
@@ -217,6 +225,9 @@ onMounted(() => {
     width: 160px;
     top: 38%;
     transform: rotate(323deg);
+  }
+  .none {
+    display: none;
   }
   .scaled {
     transform: scale(1.2);
