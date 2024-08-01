@@ -72,6 +72,16 @@ const allTasks = {
       description: "Отправляйтесь в М.Видео за целой горой орехов",
       nuts: 1000,
     },
+    {
+      id: 6,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
+    {
+      id: 7,
+      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      nuts: 1000,
+    },
   ],
   made: [
     {
@@ -231,6 +241,36 @@ const allTasks = {
     height: auto;
     top: 3%;
     left: 25%;
+  }
+}
+@media screen and (min-height: 750px) {
+  .tasks_list {
+    height: 50%;
+    max-height: 50% !important;
+  }
+  .task {
+    min-height: 60px !important;
+    max-height: 60px !important;
+    button {
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+  }
+  .task_text {
+    font-size: 16px !important;
+    line-height: 16px !important;
+  }
+}
+@media screen and (min-width: 420px) {
+  .tasks_list {
+    height: calc(50% - 10vw) !important;
+    max-height: calc(50% - 10vw) !important;
+  }
+}
+@media screen and (min-width: 520px) {
+  .tasks_list {
+    height: calc(50% - 20vw) !important;
+    max-height: calc(50% - 20vw) !important;
   }
 }
 </style>

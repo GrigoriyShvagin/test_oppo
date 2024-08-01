@@ -113,7 +113,7 @@ const friends = [];
     .friends_block {
       height: 75%;
       width: 100%;
-      border-radius: 40px;
+      border-radius: 40px 40px 0 0;
       padding: 1px 0px 0 0;
       z-index: 10;
       background: radial-gradient(
@@ -127,7 +127,7 @@ const friends = [];
       width: 100%;
       background: var(--clicker-bg);
       z-index: 10;
-      border-radius: 40px;
+      border-radius: 40px 40px 0 0;
       .noFriends {
         width: 100%;
         margin-top: 30px;
@@ -190,6 +190,14 @@ const friends = [];
       font-weight: 600;
       margin-bottom: 10px;
     }
+  }
+}
+@media screen and (min-height: 700px) {
+  .friends_menu {
+    height: 90% !important;
+  }
+  .friends_block {
+    height: 90% !important;
   }
 }
 </style>

@@ -51,6 +51,7 @@
             class="nutImage"
             v-for="item in 4"
             :key="item"
+            ref="nutImage"
             :src="'/images/NutStage' + item + '.png'"
             :class="{
               currentNut: currentNut == item,
@@ -105,6 +106,7 @@ let currentEnergy = ref(user.userEnergyCount);
 let currentOppa = ref(0);
 
 let energyIcon = ref(null);
+let nutImage = ref(null);
 
 const oppa1 = ref(null);
 const oppa2 = ref(null);
@@ -166,8 +168,16 @@ function oppa4Anim() {
   setTimeout(deleteOppa4, 500);
 }
 
+function nutShake() {
+  nutImage.value[currentNut.value - 1].classList.remove("shaker");
+  nutImage.value[currentNut.value - 1].classList.add("shaker");
+}
+
 function gotClick() {
   window.requestAnimationFrame(addScale);
+
+  userNutsCount.value % 4 < 3 ? nutShake() : null;
+
   energyIcon.value.classList.add("activeEnergy");
 }
 function vibrate() {
@@ -176,6 +186,7 @@ function vibrate() {
 
 function nutClick() {
   const less4 = currentNut.value < 4;
+  nutImage.value[currentNut.value - 1].classList.remove("shaker");
 
   userNutsCount.value += 1;
   currentEnergy.value -= 1;
@@ -424,7 +435,8 @@ onMounted(() => {
             );
             box-shadow: 0px 0px 21.2px 0px #2cff74;
             svg {
-              color: #2c9a4c;
+              transition: 0.3s;
+              fill: #2c9a4c;
             }
           }
         }
@@ -504,6 +516,27 @@ onMounted(() => {
       }
     }
   }
+}
+@keyframes shake {
+  20% {
+    transform: translate3d(20px, 0, 0);
+  }
+  40% {
+    transform: translate3d(-20px, 0, 0);
+  }
+  60% {
+    transform: translate3d(20px, 0, 0);
+  }
+  80% {
+    transform: translate3d(-20px, 0, 0);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.shaker {
+  animation: shake 0.1s linear;
 }
 @media screen and (max-width: 450px) {
   .border {

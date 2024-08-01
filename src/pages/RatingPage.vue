@@ -203,4 +203,16 @@ const leadersList = [
     top: -5%;
   }
 }
+@media screen and (min-height: 750px) {
+  .leaders_list {
+    height: calc(100vh - 470px) !important;
+    max-height: calc(100vh - 470px) !important;
+  }
+}
+@media screen and (min-width: 472px) {
+  .leaders_list {
+    height: calc(100% - 50vw) !important;
+    max-height: calc(100% - 50vw) !important;
+  }
+}
 </style>

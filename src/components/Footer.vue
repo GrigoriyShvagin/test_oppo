@@ -74,4 +74,12 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
     margin-top: 16px;
   }
 }
+@media screen and (min-height: 700px) {
+  .main {
+    height: 70px;
+  }
+  .footer_content {
+    padding-bottom: 20px !important;
+  }
+}
 </style>
