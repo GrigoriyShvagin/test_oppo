@@ -171,8 +171,6 @@ function vibrate() {
   console.log(1);
   if ("vibrate" in navigator) {
     navigator.vibrate(200); // Вибрация на 200 мс
-  } else {
-    phone.value.classList.add("none");
   }
 }
 
@@ -225,9 +223,6 @@ onMounted(() => {
     width: 160px;
     top: 38%;
     transform: rotate(323deg);
-  }
-  .none {
-    display: none;
   }
   .scaled {
     transform: scale(1.2);
