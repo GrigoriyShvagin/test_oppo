@@ -168,10 +168,7 @@ function gotClick() {
   window.requestAnimationFrame(addScale);
 }
 function vibrate() {
-  console.log(1);
-  if ("vibrate" in navigator) {
-    navigator.vibrate(200); // Вибрация на 200 мс
-  }
+  Telegram.WebApp.HapticFeedback.impactOccurred("light");
 }
 
 function nutClick() {
