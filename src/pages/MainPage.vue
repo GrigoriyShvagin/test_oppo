@@ -65,7 +65,7 @@
           <div class="energy_content">
             <energySvg class="energy" />
             <p>{{ currentEnergy }} / 1000</p>
-            <p class="energyIcon"><RocketsSvg /></p>
+            <p class="energyIcon" ref="energyIcon"><RocketsSvg /></p>
           </div>
         </div>
       </div>
@@ -103,6 +103,8 @@ let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
 let currentEnergy = ref(user.userEnergyCount);
 let currentOppa = ref(0);
+
+let energyIcon = ref(null);
 
 const oppa1 = ref(null);
 const oppa2 = ref(null);
@@ -166,9 +168,10 @@ function oppa4Anim() {
 
 function gotClick() {
   window.requestAnimationFrame(addScale);
+  energyIcon.value.classList.add("activeEnergy");
 }
 function vibrate() {
-  Telegram.WebApp.HapticFeedback.impactOccurred("light");
+  Telegram.WebApp.HapticFeedback.impactOccurred("medium");
 }
 
 function nutClick() {
@@ -401,20 +404,27 @@ onMounted(() => {
             height: 54px;
             width: 54px;
             border-radius: 70px;
-            box-shadow: 0px 0px 21.2px 0px #2cff74;
+            border: 2px solid #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c4bfb9;
+            transition: 0.3s;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .activeEnergy {
             background: linear-gradient(
               143.06deg,
               #2cff74 12.78%,
               #bcffd3 37.98%,
               #2cff74 84.78%
             );
-            border: 2px solid #fafafa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0px 0px 21.2px 0px #2cff74;
             svg {
-              width: 20px;
-              height: 20px;
+              color: #2c9a4c;
             }
           }
         }
