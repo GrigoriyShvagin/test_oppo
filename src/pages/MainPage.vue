@@ -524,12 +524,6 @@ onMounted(() => {
   40% {
     transform: translate3d(-20px, 0, 0);
   }
-  60% {
-    transform: translate3d(20px, 0, 0);
-  }
-  80% {
-    transform: translate3d(-20px, 0, 0);
-  }
   100% {
     transform: none;
   }
