@@ -216,9 +216,9 @@ onMounted(() => {
   .phone {
     position: absolute;
     z-index: 21;
-    right: 5%;
+    right: 10%;
     width: 40%;
-    top: 30%;
+    top: 35%;
     transform: rotate(311deg);
   }
   .scaled {
@@ -515,6 +515,21 @@ onMounted(() => {
   }
   .fourthNut {
     left: 10%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .phone {
+    width: 35% !important;
+    top: 40% !important;
+    right: 10% !important;
+  }
+  .thirdNut {
+    width: 50% !important;
+    left: 10%;
+  }
+  .fourthNut {
+    max-width: 270px !important;
   }
 }
 </style>
