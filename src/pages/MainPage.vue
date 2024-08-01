@@ -110,10 +110,10 @@ const oppa3 = ref(null);
 const oppa4 = ref(null);
 
 function addScale() {
-  phone.value.style.transform = "scale(1.2) rotate(323deg)";
+  phone.value.style.transform = "scale(1.2) rotate(311deg)";
 }
 function removeScale() {
-  phone.value.style.transform = "scale(1.0) rotate(323deg)";
+  phone.value.style.transform = "scale(1.0) rotate(311deg)";
 }
 
 function deleteOppa1() {
@@ -217,9 +217,9 @@ onMounted(() => {
     position: absolute;
     z-index: 21;
     right: 5%;
-    width: 160px;
-    top: 38%;
-    transform: rotate(323deg);
+    width: 40%;
+    top: 30%;
+    transform: rotate(311deg);
   }
   .scaled {
     transform: scale(1.2);
@@ -421,43 +421,48 @@ onMounted(() => {
       }
       .nut_block {
         display: flex;
-        width: 50vw;
+        width: 100%;
         height: 45%;
         z-index: 5;
         position: relative;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
         .nutImage {
           display: none;
           position: absolute;
           z-index: 2;
-          max-width: 100%;
+          max-width: 70%;
           margin-right: 60px;
         }
         .firstNut {
-          width: 100%;
-          height: auto;
-        }
-        .secondNut {
           width: 75%;
           height: auto;
         }
+        .secondNut {
+          width: 40%;
+          left: 15%;
+          height: auto;
+          max-width: 250px;
+        }
         .thirdNut {
-          width: 100%;
+          width: 75%;
+          max-width: 300px;
           height: auto;
         }
         .fourthNut {
           width: 100%;
+          max-width: 300px;
           height: auto;
         }
         .currentNut {
           display: block;
         }
         .cup {
-          width: 80%;
-          height: 80%;
+          width: 75%;
+          height: 75%;
           z-index: 2;
-          margin-right: 60px;
+          margin-right: 150px;
+          text-align: left;
         }
       }
       .logo,
@@ -493,6 +498,23 @@ onMounted(() => {
 @media screen and (max-width: 450px) {
   .border {
     margin: 0;
+  }
+}
+@media screen and (max-width: 360px) {
+  .thirdNut {
+    left: -10%;
+  }
+  .fourthNut {
+    left: -10%;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .thirdNut {
+    left: 10%;
+  }
+  .fourthNut {
+    left: 10%;
   }
 }
 </style>

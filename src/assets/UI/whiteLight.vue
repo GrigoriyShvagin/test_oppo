@@ -40,11 +40,11 @@
 <style lang="scss" scoped>
 div {
   position: absolute;
-  width: 100vw;
+  width: 100dvw;
   top: -70px;
   z-index: 1;
   svg {
-    width: 100vw;
+    width: 100dvw;
   }
 }
 </style>

@@ -101,9 +101,9 @@
 div {
   position: absolute;
   z-index: 0;
-  left: -65%;
-  width: 100%;
-  max-width: 100%;
+  left: -45%;
+  width: 80%;
+  max-width: 80%;
   animation: blink 4s infinite;
   svg {
     width: 200%;
