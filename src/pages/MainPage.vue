@@ -380,7 +380,7 @@ onMounted(() => {
       }
       .energy_block {
         margin-top: 20px;
-        width: 50%;
+        width: 55%;
         height: 55px;
         background: linear-gradient(
           253.35deg,
