@@ -165,6 +165,7 @@ function oppa4Anim() {
 
 function gotClick() {
   window.requestAnimationFrame(addScale);
+  window.navigator.vibrate([100]);
 }
 
 function nutClick() {
