@@ -575,4 +575,28 @@ onMounted(() => {
     max-width: 270px !important;
   }
 }
+@media screen and (min-height: 700px) {
+  .phone {
+    width: 35% !important;
+    top: 40% !important;
+    right: 10% !important;
+  }
+  .firstNut {
+    width: 70% !important;
+    max-width: 70% !important;
+    left: -2%;
+  }
+  .secondNut {
+    width: 50% !important;
+    max-width: 50% !important;
+    left: 7% !important;
+  }
+  .thirdNut {
+    width: 70% !important;
+    left: 0;
+  }
+  .fourthNut {
+    max-width: 270px !important;
+  }
+}
 </style>
