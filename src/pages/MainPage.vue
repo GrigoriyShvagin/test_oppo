@@ -180,8 +180,9 @@ function gotClick() {
 
   energyIcon.value.classList.add("activeEnergy");
 }
+
 function vibrate() {
-  Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+  Telegram.WebApp.HapticFeedback.impactOccurred("light");
 }
 
 function nutClick() {
