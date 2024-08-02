@@ -176,7 +176,7 @@ function nutShake() {
 function gotClick() {
   window.requestAnimationFrame(addScale);
 
-  userNutsCount.value % 4 < 3 ? nutShake() : null;
+  nutShake();
 
   energyIcon.value.classList.add("activeEnergy");
 }
@@ -199,9 +199,7 @@ function nutClick() {
     currentOppa.value == 4 ? oppa4Anim() : null;
   }
 
-  if (userNutsCount.value % 4 == 0) {
-    less4 ? (currentNut.value += 1) : (currentNut.value = 1);
-  }
+  less4 ? (currentNut.value += 1) : (currentNut.value = 1);
 
   window.requestAnimationFrame(removeScale);
 }
@@ -587,7 +585,8 @@ onMounted(() => {
   }
   .thirdNut {
     width: 70% !important;
-    left: 0;
+    left: -2% !important;
+    top: 2% !important;
   }
   .fourthNut {
     max-width: 270px !important;

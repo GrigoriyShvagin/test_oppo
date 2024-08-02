@@ -80,6 +80,25 @@ import { Tasks, Friends, Crack, Exchange, Rating } from "../assets";
   }
   .footer_content {
     padding-bottom: 20px !important;
+    p {
+      font-size: 14px !important;
+      margin-top: 10px;
+    }
+    svg:not(.crack) {
+      width: 22px !important;
+      height: 22px !important;
+    }
+    .crack {
+      position: absolute;
+      bottom: -50%;
+      left: -95%;
+      width: 160px;
+      height: auto;
+    }
+    .crack_text {
+      padding: 11px 0 0 0;
+      margin-top: 16px;
+    }
   }
 }
 </style>
