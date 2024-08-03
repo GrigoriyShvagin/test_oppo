@@ -62,7 +62,7 @@
               }"
             ></div>
             <energySvg class="energy" />
-            <p>{{ currentEnergy }}/ 1000</p>
+            <p>{{ userInfo.energy }}/ 1000</p>
             <p
               class="energyIcon"
               :class="{ activeEnergy: userInfo.bonus != null }"
