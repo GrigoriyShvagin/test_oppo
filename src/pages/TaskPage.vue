@@ -35,7 +35,7 @@
               class="nutsCount"
               :class="{
                 bonusP: item.bonus != null,
-                zaeb: item.id == 1,
+                zaeb: item.id == 4,
                 k: item.id == 5,
               }"
             >
@@ -61,25 +61,25 @@ const allTasks = {
       id: 1,
       description: "Посетить официальный онлайн-магазин OPPO",
       nuts: 5000,
-      bonus: "+ x2 восстановление энергии",
+      bonus: null,
     },
     {
       id: 4,
       description: "Подписаться на OPPO в ВК ",
       nuts: 5000,
-      bonus: null,
+      bonus: "+ x2 восстановление энергии",
     },
     {
       id: 3,
       description: "Подписаться на OPPO в Telegram ",
       nuts: 5000,
-      bonus: null,
+      bonus: "+ 3 ореха за 1 удар",
     },
     {
       id: 2,
       description: "Смотреть видео на YouTube",
       nuts: 1000,
-      bonus: "+ 3 ореха за 1 удар",
+      bonus: null,
     },
     {
       id: 5,
