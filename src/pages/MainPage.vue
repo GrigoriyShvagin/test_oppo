@@ -21,9 +21,9 @@
               Задания <ThreeArrowsLeft class="arrows_left" />{{
                 user.questsCount
               }}
-              / 20
+              / 5
             </div>
-            <QuestsCount :precent="user.questsCount / 20" />
+            <QuestsCount :precent="user.questsCount / 5" />
           </div>
         </div>
         <div class="nuts_block">
@@ -51,6 +51,10 @@
         </div>
         <div class="energy_block">
           <div class="energy_content">
+            <div
+              class="gradient"
+              :style="{ width: currentEnergy / 10 + '%' }"
+            ></div>
             <energySvg class="energy" />
             <p>{{ currentEnergy }} / 1000</p>
             <p class="energyIcon" ref="energyIcon"><RocketsSvg /></p>
@@ -83,8 +87,8 @@ const user = {
   name: "Леонид Агутин",
   nutsCount: 5908,
   image: "/images/avatar_url.png",
-  questsCount: 5,
-  userEnergyCount: 1000,
+  questsCount: 2,
+  userEnergyCount: 700,
 };
 
 let currentNut = ref("/images/NutStage1.png");
@@ -158,12 +162,16 @@ function oppa4Anim() {
 
 function deleteGif() {
   currentNut.value = "/images/NutStage1.png";
+  nutImage.value.classList.remove("nutGif");
 }
 
 function gotClick() {
   window.requestAnimationFrame(addScale);
+  const audio = new Audio("/audio/oppa.mp3");
+  audio.play();
   energyIcon.value.classList.add("activeEnergy");
   currentNut.value = "/images/nutGif.gif";
+  nutImage.value.classList.add("nutGif");
   setTimeout(deleteGif, 600);
 }
 
@@ -398,15 +406,28 @@ watch(
           background: var(--gray-bg);
           border-radius: 70px;
           justify-content: space-between;
+          position: relative;
+          .gradient {
+            position: absolute;
+            height: 100%;
+            border-radius: 70px;
+            background: linear-gradient(
+              90deg,
+              #4bfb7e 0%,
+              rgba(75, 251, 126, 0) 100%
+            );
+          }
           .energy {
             margin: 0 0 0 20px;
             width: 15px;
             height: 20px;
+            z-index: 2;
           }
           p:not(.energyIcon) {
             margin-right: 4px;
             width: max-content;
             font-size: 14px;
+            z-index: 2;
           }
           .energyIcon {
             height: 54px;
@@ -418,6 +439,7 @@ watch(
             justify-content: center;
             background: #c4bfb9;
             transition: 0.3s;
+            z-index: 2;
             svg {
               width: 20px;
               height: 20px;
@@ -451,6 +473,13 @@ watch(
           z-index: 2;
           max-width: 70%;
           margin-right: 60px;
+        }
+        .nutGif {
+          top: -23vw;
+          left: 3vw;
+          width: 80%;
+          max-width: 300px;
+          height: auto;
         }
         .firstNut {
           width: 75%;
@@ -543,12 +572,10 @@ watch(
   }
 }
 
-@media screen and (min-width: 500px) {
-  .thirdNut {
-    left: 10%;
-  }
-  .fourthNut {
-    left: 10%;
+@media screen and (max-height: 700px) {
+  .nutGif {
+    top: -40vw !important;
+    left: 0 !important;
   }
 }
 
