@@ -31,8 +31,16 @@
           />
           <div class="task_content">
             <p class="task_text">{{ item.description }}</p>
-            <p class="nutsCount">
+            <p
+              class="nutsCount"
+              :class="{
+                bonusP: item.bonus != null,
+                zaeb: item.id == 1,
+                k: item.id == 5,
+              }"
+            >
               + {{ item.nuts }} <img src="/images/NutStage1.png" alt="" />
+              <span class="bonus">{{ item.bonus }}</span>
             </p>
           </div>
           <button>Начать</button>
@@ -53,26 +61,31 @@ const allTasks = {
       id: 1,
       description: "Посетить официальный онлайн-магазин OPPO",
       nuts: 5000,
+      bonus: "+ x2 восстановление энергии",
     },
     {
       id: 4,
       description: "Подписаться на OPPO в ВК ",
       nuts: 5000,
+      bonus: null,
     },
     {
       id: 3,
       description: "Подписаться на OPPO в Telegram ",
       nuts: 5000,
+      bonus: null,
     },
     {
       id: 2,
       description: "Смотреть видео на YouTube",
       nuts: 1000,
+      bonus: "+ 3 ореха за 1 удар",
     },
     {
       id: 5,
       description: "Снять видео в М.Видео",
       nuts: 50000,
+      bonus: null,
     },
   ],
   made: [
@@ -164,13 +177,26 @@ const allTasks = {
             font-weight: 500;
             color: #fff;
             margin-top: 5px;
+            .bonus {
+              margin-left: 20px;
+            }
             img {
               width: 30px;
               height: 30px;
-              left: 40px;
-              bottom: -8px;
+              left: 35px;
+              bottom: -10px;
               position: absolute;
             }
+          }
+        }
+        .zaeb {
+          img {
+            top: -7px;
+          }
+        }
+        .k {
+          img {
+            left: 40px !important;
           }
         }
         button {
@@ -259,6 +285,13 @@ const allTasks = {
   .tasks_list {
     height: calc(50% - 10vw) !important;
     max-height: calc(50% - 10vw) !important;
+  }
+}
+@media screen and (min-width: 450px) {
+  .bonusP {
+    img {
+      bottom: -10px !important;
+    }
   }
 }
 @media screen and (min-width: 520px) {

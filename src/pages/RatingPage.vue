@@ -3,7 +3,7 @@
     <WhiteLight class="whiteLight" />
     <img class="nut_image" src="/images/NutStage1.png" alt="" />
     <div class="content">
-      <p class="maxNuts">200 000 000</p>
+      <p class="maxNuts">Рейтинг участников</p>
 
       <div class="leaders_list">
         <div class="leader-border" v-for="item in ratingList" :key="item">
@@ -207,9 +207,10 @@ onMounted(() => {
       }
     }
     p {
-      font-size: 10vw;
+      font-size: 9vw;
       font-weight: 700;
       color: white;
+      margin-top: 20px;
       margin-bottom: 30px;
     }
     .quest {

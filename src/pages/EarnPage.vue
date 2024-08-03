@@ -3,7 +3,7 @@
     <div class="content">
       <EarnGreen class="earnGreen" />
       <img src="/images/NutStage1.png" alt="" />
-      <p class="header">Получить вознаграждение</p>
+      <p class="header">200 000 000</p>
       <button>Получить вознаграждение</button>
       <ul class="list_for_earn">
         Условия получения вознаграждения:
@@ -64,7 +64,7 @@ import { EarnGreen } from "../assets";
     color: #fff;
     margin-bottom: 30px;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 13vw;
     line-height: 34px;
     text-align: center;
     letter-spacing: 3%;
