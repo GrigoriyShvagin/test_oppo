@@ -12,5 +12,6 @@ import Footer from "../components/Footer.vue";
 <style lang="scss" scoped>
 .content {
   overflow: hidden;
+  overscroll-behavior: contain;
 }
 </style>
