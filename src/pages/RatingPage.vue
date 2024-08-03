@@ -53,13 +53,19 @@ const leadersList = [
   { id: 4, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
   { id: 5, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
   { id: 6, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 1, name: "Benjamin", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 2, name: "Antoxa", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 3, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 4, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 5, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
+  { id: 6, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
 ];
 </script>
 
 <style lang="scss" scoped>
 .main {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
   background: #000;
   display: flex;
   align-self: center;
@@ -70,9 +76,9 @@ const leadersList = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40% 0 0 0;
+    padding: 40% 0 140px 0;
     .person_block {
-      width: 100%;
+      width: 90%;
       height: 50px;
       border-radius: 8px;
       border: 1px solid #2cff74;
@@ -80,6 +86,9 @@ const leadersList = [
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: fixed;
+      left: 5vw;
+      bottom: 90px;
       .info_block {
         margin-left: 20px;
         display: flex;
@@ -117,8 +126,6 @@ const leadersList = [
     }
     .leaders_list {
       width: 100%;
-      height: 40%;
-      max-height: 40%;
       overflow: scroll;
       scrollbar-width: none;
       display: flex;
@@ -138,7 +145,7 @@ const leadersList = [
         margin-bottom: 10px;
         .leader {
           width: 100%;
-          height: 50px;
+          height: 100%;
           background: var(--clicker-bg);
           border-radius: 8px;
           display: flex;
@@ -201,18 +208,6 @@ const leadersList = [
     z-index: 10;
     left: 20%;
     top: -5%;
-  }
-}
-@media screen and (min-height: 750px) {
-  .leaders_list {
-    height: calc(100vh - 470px) !important;
-    max-height: calc(100vh - 470px) !important;
-  }
-}
-@media screen and (min-width: 472px) {
-  .leaders_list {
-    height: calc(100% - 50vw) !important;
-    max-height: calc(100% - 50vw) !important;
   }
 }
 </style>

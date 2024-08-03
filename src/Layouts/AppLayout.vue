@@ -11,8 +11,6 @@ import Footer from "../components/Footer.vue";
 
 <style lang="scss" scoped>
 .content {
-  width: 100dvw;
-  height: 100dvh;
   overflow: hidden;
 }
 </style>

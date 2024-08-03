@@ -45,16 +45,6 @@ import { ref, onMounted } from "vue";
 import { WhiteBorder } from "../assets";
 let currMenu = ref("New");
 
-onMounted(() => {
-  document.querySelectorAll(":not(.tasks_list)").addEventListener(
-    "touchmove",
-    function (event) {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-});
-
 const allTasks = {
   new: [
     {
@@ -125,13 +115,13 @@ const allTasks = {
 
 <style lang="scss" scoped>
 .main {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   background-color: #060606;
   display: flex;
   justify-content: center;
   overflow: hidden;
   position: relative;
+  padding-bottom: 70px;
   .content {
     position: relative;
     display: flex;
