@@ -207,7 +207,7 @@ const leadersList = [
     max-width: 300px;
     z-index: 10;
     left: 20%;
-    top: -5%;
+    top: -3%;
   }
 }
 </style>
