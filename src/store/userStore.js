@@ -51,7 +51,7 @@ export const useUserStore = defineStore("uesr", {
 
       const diffMiliSec = currentDate - lastSeen;
       const diffMin = Math.floor(diffMiliSec / (1000 * 60));
-      const energy = 0;
+      let energy = 0;
       if (diffMin > 0) {
         result.data.energy + diffMin > 1000
           ? (energy = 1000)
