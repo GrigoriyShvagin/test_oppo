@@ -15,7 +15,11 @@ export const useUserStore = defineStore("uesr", {
   actions: {
     async plusEnergy() {
       this.userInfoData.energy += 1;
-      this.changeNutsCount({ energy: this.userInfoData.energy });
+      const date = new Date().toISOString();
+      this.changeNutsCount({
+        energy: this.userInfoData.energy,
+        lastSeen: date,
+      });
     },
     click() {
       this.userInfoData.energy -= 1;
@@ -37,7 +41,25 @@ export const useUserStore = defineStore("uesr", {
         headers: headers,
       });
       this.userInfoData = result.data;
+      this.setnewEnergy(result);
       return result.data;
+    },
+    setnewEnergy(result) {
+      const currentDate = new Date();
+
+      const lastSeen = new Date(localStorage.getItem("lastSeen"));
+
+      const diffMiliSec = currentDate - lastSeen;
+      const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      if (diffMin > 0) {
+        this.changeNutsCount({
+          energy: result.data.energy + diffMin,
+          nuts: result.data.nuts,
+          lastSeen: currentDate.toISOString(),
+        });
+        localStorage.setItem("lastSeen", currentDate.toISOString());
+      }
+      return diffMin;
     },
   },
 });

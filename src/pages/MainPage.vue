@@ -63,7 +63,13 @@
             ></div>
             <energySvg class="energy" />
             <p>{{ currentEnergy }}/ 1000</p>
-            <p class="energyIcon" ref="energyIcon"><RocketsSvg /></p>
+            <p
+              class="energyIcon"
+              :class="{ activeEnergy: userInfo.bonus != null }"
+              ref="energyIcon"
+            >
+              <RocketsSvg />
+            </p>
           </div>
         </div>
       </div>
@@ -185,7 +191,6 @@ function gotClick() {
   window.requestAnimationFrame(addScale);
   const audio = new Audio("/audio/oppa.mp3");
   audio.play();
-  energyIcon.value.classList.add("activeEnergy");
   currentNut.value = "/images/nutGif.gif";
   nutImage.value.classList.add("nutGif");
   setTimeout(deleteGif, 120);
@@ -219,27 +224,6 @@ function checkEnergy() {
     }
   }, 60000);
 }
-
-function setnewEnergy() {
-  const currentDate = new Date();
-
-  const lastSeen = new Date(localStorage.getItem("lastSeen"));
-
-  const diffMiliSec = currentDate - lastSeen;
-  const diffMin = Math.floor(diffMiliSec / 1000);
-  console.log(diffMin);
-  if (diffMin > 0) {
-    console.log(result.data);
-    userStore.changeNutsCount({
-      energy: result.data.energy,
-      nuts: result.data.nuts,
-      lastSeen: currentDate.toISOString(),
-    });
-    localStorage.setItem("lastSeen", currentDate.toISOString());
-  }
-}
-
-// после того как запрос ответил 200, нужно будет сравнить время внутри него
 
 onMounted(() => {
   userStore.getUserData();
@@ -309,7 +293,7 @@ watch(
       .name_block {
         display: flex;
         flex-direction: column;
-        width: 60%;
+        width: 50%;
         .name_info {
           display: flex;
           align-items: center;
@@ -342,7 +326,7 @@ watch(
         }
       }
       .nuts_block {
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
