@@ -144,6 +144,7 @@ const allTasks = {
         .task_img {
           width: 40px;
           height: auto;
+          border-radius: 10px;
         }
         .task_content {
           display: flex;

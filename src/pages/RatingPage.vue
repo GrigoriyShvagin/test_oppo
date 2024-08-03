@@ -4,12 +4,7 @@
     <img class="nut_image" src="/images/NutStage1.png" alt="" />
     <div class="content">
       <p class="maxNuts">200 000 000</p>
-      <QuestsCount
-        :precent="0.1"
-        :border-height="'24px'"
-        :border-width="'100%'"
-        class="quest"
-      />
+
       <div class="leaders_list">
         <div class="leader-border" v-for="item in ratingList" :key="item">
           <div class="leader">
@@ -56,7 +51,7 @@
 </template>
 
 <script setup>
-import { WhiteLight, QuestsCount } from "../assets";
+import { WhiteLight } from "../assets";
 import { onMounted, computed } from "vue";
 import { useRatingStore } from "../store/ratingStore";
 

@@ -5,8 +5,16 @@
       <img src="/images/NutStage1.png" alt="" />
       <p class="header">Получить вознаграждение</p>
       <button>Получить вознаграждение</button>
-      <a href="https://google.com" class=""
-        >Условия и правила получения выплат</a
+      <ul class="list_for_earn">
+        Условия получения вознаграждения:
+        <li>Общий игровой период - не менее 3 дней</li>
+        <li>Ежедневная активность в игре</li>
+        <li>Выполнение не менее 4-х заданий</li>
+        <li>Баланс не менее 100 000 орехов</li>
+        <li>Получить вознаграждение можно только 1 раз за игровой период</li>
+      </ul>
+      <a href="https://google.com" class="link"
+        >Полные правила активности и условия получения вознаграждения</a
       >
     </div>
   </div>
@@ -28,9 +36,11 @@ import { EarnGreen } from "../assets";
   background: #000;
   overflow: hidden;
   a {
-    text-decoration: none;
-    color: #7c7c7c;
-    font-size: 12px;
+    color: #2cff74;
+    font-size: 14px;
+    max-width: 90%;
+    margin-top: 20px;
+    text-align: center;
   }
   .content {
     width: 100%;
@@ -40,6 +50,15 @@ import { EarnGreen } from "../assets";
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    .list_for_earn {
+      font-size: 14px;
+      color: white;
+      width: 90%;
+      list-style: none;
+      li {
+        margin: 5px 0;
+      }
+    }
   }
   .header {
     color: #fff;

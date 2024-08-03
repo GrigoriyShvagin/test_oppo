@@ -12,7 +12,7 @@
             <p class="header">Пригласить друга</p>
             <p class="content_text">
               <img src="/images/NutStage1.png" alt="" />
-              <span> +1000 для вас и вашего друга </span>
+              <span> +10000 орехов для Вас и +5 000 для Вашего друга </span>
             </p>
           </div>
           <IconInvite class="icon_invite" />
@@ -186,7 +186,7 @@ const friends = [];
       text-align: center;
     }
     .header {
-      font-size: 20px;
+      font-size: 28px;
       font-weight: 600;
       margin-bottom: 10px;
     }
