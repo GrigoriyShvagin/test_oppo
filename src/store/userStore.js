@@ -30,6 +30,7 @@ export const useUserStore = defineStore("uesr", {
       const result = await axios.patch(`${url}/user-profile/edit`, params, {
         headers: headers,
       });
+      return result.data;
     },
     async setUserData({ username, firstName, lastName, id }) {
       const params = { username, firstName, lastName, id };
@@ -51,19 +52,21 @@ export const useUserStore = defineStore("uesr", {
 
       const diffMiliSec = currentDate - lastSeen;
       const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      const newResult = {};
       let energy = 0;
       if (diffMin > 0) {
         result.data.energy + diffMin > 1000
           ? (energy = 1000)
           : (energy = result.data.energy + diffMin);
-        this.changeNutsCount({
+        newResult = this.changeNutsCount({
           energy: energy,
           nuts: result.data.nuts,
           lastSeen: currentDate.toISOString(),
         });
+        this.userInfoData = newResult;
         localStorage.setItem("lastSeen", currentDate.toISOString());
       }
-      return diffMin;
+      return newResult;
     },
   },
 });
