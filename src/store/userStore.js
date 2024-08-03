@@ -51,9 +51,13 @@ export const useUserStore = defineStore("uesr", {
 
       const diffMiliSec = currentDate - lastSeen;
       const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      const energy = 0;
       if (diffMin > 0) {
+        result.data.energy + diffMin > 1000
+          ? (energy = 1000)
+          : (energy = result.data.energy + diffMin);
         this.changeNutsCount({
-          energy: result.data.energy + diffMin,
+          energy: energy,
           nuts: result.data.nuts,
           lastSeen: currentDate.toISOString(),
         });
