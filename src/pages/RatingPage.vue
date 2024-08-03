@@ -65,6 +65,7 @@ const leadersList = [
 <style lang="scss" scoped>
 .main {
   width: 100vw;
+  overscroll-behavior: contain;
   min-height: 100vh;
   background: #000;
   display: flex;

@@ -115,6 +115,7 @@ const allTasks = {
 
 <style lang="scss" scoped>
 .main {
+  overscroll-behavior: contain;
   width: 100vw;
   background-color: #060606;
   display: flex;
