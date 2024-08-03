@@ -11,15 +11,28 @@
         class="quest"
       />
       <div class="leaders_list">
-        <div class="leader-border" v-for="item in leadersList" :key="item">
+        <div class="leader-border" v-for="item in ratingList" :key="item">
           <div class="leader">
             <div class="info_block">
-              <img class="avatar_url" :src="item.photo" alt="" />
+              <img
+                class="avatar_url"
+                v-if="item.photo"
+                :src="item.photo"
+                alt=""
+              />
+              <img
+                class="avatar_url"
+                v-else
+                :src="'/images/avatar_url.png'"
+                alt=""
+              />
               <p>
-                <span class="name">{{ item.name }}</span
+                <span class="name">{{
+                  item.firstName + " " + item.lastName
+                }}</span
                 ><span
                   ><img src="/images/NutStage1.png" alt="" />{{
-                    item.nutsCount
+                    item.nuts
                   }}</span
                 >
               </p>
@@ -44,7 +57,12 @@
 
 <script setup>
 import { WhiteLight, QuestsCount } from "../assets";
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
+import { useRatingStore } from "../store/ratingStore";
+
+const ratingStore = useRatingStore();
+
+let ratingList = computed(() => ratingStore.ratingInfo);
 
 const leadersList = [
   { id: 1, name: "Benjamin", photo: "/images/avatar_url.png", nutsCount: 322 },
@@ -60,6 +78,10 @@ const leadersList = [
   { id: 5, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
   { id: 6, name: "Антоша", photo: "/images/avatar_url.png", nutsCount: 322 },
 ];
+
+onMounted(() => {
+  ratingStore.getRatingInfo();
+});
 </script>
 
 <style lang="scss" scoped>

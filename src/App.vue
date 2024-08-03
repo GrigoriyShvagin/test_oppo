@@ -9,11 +9,7 @@ import { computed, onMounted } from "vue";
 
 const layout = computed(() => AppLayout);
 
-const date = new Date().getDay();
-
-onMounted(() => {
-  localStorage.setItem("lastSeen", date);
-});
+onMounted(() => {});
 </script>
 
 <style scoped></style>

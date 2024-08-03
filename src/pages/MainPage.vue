@@ -13,22 +13,23 @@
       <div class="header_content">
         <div class="name_block">
           <div class="name_info">
-            <img :src="user.image" alt="" />
-            <p class="name">{{ user.name }}</p>
+            <img v-if="tg.user != null" :src="tg.user.photo_url" alt="" />
+            <img v-else :src="user.image" alt="" />
+            <p class="name">
+              {{ userInfo.firstName + " " + userInfo.lastName }}
+            </p>
           </div>
           <div class="quests_info">
             <div class="quests_count">
-              Задания <ThreeArrowsLeft class="arrows_left" />{{
-                user.questsCount
-              }}
-              / 5
+              Задания <ThreeArrowsLeft class="arrows_left" />{{ 0 }}
+              / 18
             </div>
             <QuestsCount :precent="user.questsCount / 5" />
           </div>
         </div>
         <div class="nuts_block">
           <span>Всего у Вас:</span>
-          <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
+          <p>{{ userInfo.nuts }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
       </div>
     </div>
@@ -42,7 +43,9 @@
         <span class="oppa4" ref="oppa4"><Oppa4 /></span>
         <Logo class="logo" />
         <div class="nuts_info">
-          <p>{{ userNutsCount }} <img src="/images/NutStage1.png" alt="" /></p>
+          <p>
+            {{ currentNutsCount }} <img src="/images/NutStage1.png" alt="" />
+          </p>
         </div>
         <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
@@ -53,10 +56,13 @@
           <div class="energy_content">
             <div
               class="gradient"
-              :style="{ width: currentEnergy / 10 + '%' }"
+              :style="{
+                width: currentEnergy / 10 + '%',
+                display: currentEnergy < 300 ? 'none' : 'block',
+              }"
             ></div>
             <energySvg class="energy" />
-            <p>{{ currentEnergy }} / 1000</p>
+            <p>{{ currentEnergy }}/ 1000</p>
             <p class="energyIcon" ref="energyIcon"><RocketsSvg /></p>
           </div>
         </div>
@@ -79,23 +85,31 @@ import {
   Oppa3,
   Oppa4,
 } from "../assets";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch, onBeforeUnmount } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
 import debounce from "lodash.debounce";
+import { useUserStore } from "../store/userStore";
 
 const user = {
   name: "Леонид Агутин",
   nutsCount: 5908,
   image: "/images/avatar_url.png",
-  questsCount: 2,
-  userEnergyCount: 700,
+  questsCount: 0,
+  userEnergyCount: 20,
 };
+
+let tg = Telegram.WebApp.initDataUnsafe;
+const userStore = useUserStore();
+const userInfo = computed(() => userStore.userInfo);
+
+const currentNutsCount = ref(0);
 
 let currentNut = ref("/images/NutStage1.png");
 let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
-let currentEnergy = ref(user.userEnergyCount);
 let currentOppa = ref(0);
+
+let currentEnergy = computed(() => userStore.userInfo.energy);
 
 let energyIcon = ref(null);
 let nutImage = ref(null);
@@ -104,6 +118,8 @@ const oppa1 = ref(null);
 const oppa2 = ref(null);
 const oppa3 = ref(null);
 const oppa4 = ref(null);
+
+let intervalId = null;
 
 function addScale() {
   phone.value.style.transform = "scale(1.2) rotate(311deg)";
@@ -181,8 +197,8 @@ function vibrate() {
 
 function nutClick() {
   if (currentEnergy.value > 0) {
-    userNutsCount.value += 1;
-    currentEnergy.value -= 1;
+    userStore.click();
+    currentNutsCount.value += 1;
   }
 
   if (userNutsCount.value % 2 == 0) {
@@ -197,12 +213,37 @@ function nutClick() {
 }
 
 function checkEnergy() {
-  setInterval(() => {
-    currentEnergy.value < 1000 ? currentEnergy.value++ : null;
-  }, 3000);
+  intervalId = setInterval(() => {
+    if (currentEnergy.value < 1000) {
+      userStore.plusEnergy();
+    }
+  }, 60000);
 }
 
+function setnewEnergy() {
+  const currentDate = new Date();
+
+  const lastSeen = new Date(localStorage.getItem("lastSeen"));
+
+  const diffMiliSec = currentDate - lastSeen;
+  const diffMin = Math.floor(diffMiliSec / 1000);
+  console.log(diffMin);
+  if (diffMin > 0) {
+    console.log(result.data);
+    userStore.changeNutsCount({
+      energy: result.data.energy,
+      nuts: result.data.nuts,
+      lastSeen: currentDate.toISOString(),
+    });
+    localStorage.setItem("lastSeen", currentDate.toISOString());
+  }
+}
+
+// после того как запрос ответил 200, нужно будет сравнить время внутри него
+
 onMounted(() => {
+  userStore.getUserData();
+
   document.querySelector(".main").addEventListener(
     "touchmove",
     function (event) {
@@ -214,10 +255,20 @@ onMounted(() => {
   checkEnergy();
 });
 
+onBeforeUnmount(() => {
+  clearInterval(intervalId);
+});
+
 watch(
-  userNutsCount,
+  currentNutsCount,
   debounce(() => {
-    console.log("check");
+    const date = new Date().toISOString();
+    userStore.changeNutsCount({
+      energy: currentEnergy.value,
+      nuts: userInfo.value.nuts,
+      lastSeen: date,
+    });
+    localStorage.setItem("lastSeen", date);
   }, 500)
 );
 </script>
