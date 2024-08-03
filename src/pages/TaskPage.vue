@@ -6,7 +6,9 @@
         alt=""
         class="nut_header"
       />
-      <p class="header_text">Выполняй задания и получай больше орехов</p>
+      <p class="header_text">
+        Выполняйте задания и получайте больше орехов и энергии
+      </p>
       <div class="swaper">
         <p @click="currMenu = 'New'" :class="{ active: currMenu == 'New' }">
           Новые
@@ -49,38 +51,28 @@ const allTasks = {
   new: [
     {
       id: 1,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
-    },
-    {
-      id: 2,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
-    },
-    {
-      id: 3,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
+      description: "Посетить официальный онлайн-магазин OPPO",
+      nuts: 5000,
     },
     {
       id: 4,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
+      description: "Подписаться на OPPO в ВК ",
+      nuts: 5000,
+    },
+    {
+      id: 3,
+      description: "Подписаться на OPPO в Telegram ",
+      nuts: 5000,
+    },
+    {
+      id: 2,
+      description: "Смотреть видео на YouTube",
       nuts: 1000,
     },
     {
       id: 5,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
-    },
-    {
-      id: 6,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
-    },
-    {
-      id: 7,
-      description: "Отправляйтесь в М.Видео за целой горой орехов",
-      nuts: 1000,
+      description: "Снять видео в М.Видео",
+      nuts: 50000,
     },
   ],
   made: [
@@ -174,7 +166,7 @@ const allTasks = {
             img {
               width: 30px;
               height: 30px;
-              left: 35px;
+              left: 40px;
               bottom: -8px;
               position: absolute;
             }

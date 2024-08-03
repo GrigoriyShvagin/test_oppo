@@ -188,7 +188,7 @@ function gotClick() {
   energyIcon.value.classList.add("activeEnergy");
   currentNut.value = "/images/nutGif.gif";
   nutImage.value.classList.add("nutGif");
-  setTimeout(deleteGif, 600);
+  setTimeout(deleteGif, 120);
 }
 
 function vibrate() {

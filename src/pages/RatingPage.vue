@@ -3,7 +3,7 @@
     <WhiteLight class="whiteLight" />
     <img class="nut_image" src="/images/NutStage1.png" alt="" />
     <div class="content">
-      <p class="maxNuts">100 000 000</p>
+      <p class="maxNuts">200 000 000</p>
       <QuestsCount
         :precent="0.1"
         :border-height="'24px'"
