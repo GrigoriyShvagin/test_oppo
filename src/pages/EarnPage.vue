@@ -5,13 +5,14 @@
       <img src="/images/NutStage1.png" alt="" />
       <p class="header">Получить вознаграждение</p>
       <button>Получить вознаграждение</button>
-      <a href="" class="">Условия и правила получения выплат</a>
+      <a href="https://google.com" class=""
+        >Условия и правила получения выплат</a
+      >
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
 import { EarnGreen } from "../assets";
 </script>
 

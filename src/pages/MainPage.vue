@@ -47,20 +47,7 @@
         <div class="nut_block" @touchstart="gotClick" @touchend="nutClick">
           <Cup class="cup" />
           <GreenLight class="green_light" />
-          <img
-            class="nutImage"
-            v-for="item in 4"
-            :key="item"
-            ref="nutImage"
-            :src="'/images/NutStage' + item + '.png'"
-            :class="{
-              currentNut: currentNut == item,
-              firstNut: item == 1,
-              secondNut: item == 2,
-              thirdNut: item == 3,
-              fourthNut: item == 4,
-            }"
-          />
+          <img class="nutImage" ref="nutImage" :src="currentNut" />
         </div>
         <div class="energy_block">
           <div class="energy_content">
@@ -88,8 +75,9 @@ import {
   Oppa3,
   Oppa4,
 } from "../assets";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import GreenLight from "../assets/UI/GreenLight.vue";
+import debounce from "lodash.debounce";
 
 const user = {
   name: "Леонид Агутин",
@@ -99,7 +87,7 @@ const user = {
   userEnergyCount: 1000,
 };
 
-let currentNut = ref(1);
+let currentNut = ref("/images/NutStage1.png");
 let userNutsCount = ref(user.nutsCount);
 const phone = ref(null);
 let currentEnergy = ref(user.userEnergyCount);
@@ -168,17 +156,15 @@ function oppa4Anim() {
   setTimeout(deleteOppa4, 500);
 }
 
-function nutShake() {
-  nutImage.value[currentNut.value - 1].classList.remove("shaker");
-  nutImage.value[currentNut.value - 1].classList.add("shaker");
+function deleteGif() {
+  currentNut.value = "/images/NutStage1.png";
 }
 
 function gotClick() {
   window.requestAnimationFrame(addScale);
-
-  nutShake();
-
   energyIcon.value.classList.add("activeEnergy");
+  currentNut.value = "/images/nutGif.gif";
+  setTimeout(deleteGif, 600);
 }
 
 function vibrate() {
@@ -186,11 +172,10 @@ function vibrate() {
 }
 
 function nutClick() {
-  const less4 = currentNut.value < 4;
-  nutImage.value[currentNut.value - 1].classList.remove("shaker");
-
-  userNutsCount.value += 1;
-  currentEnergy.value -= 1;
+  if (currentEnergy.value > 0) {
+    userNutsCount.value += 1;
+    currentEnergy.value -= 1;
+  }
 
   if (userNutsCount.value % 2 == 0) {
     currentOppa.value < 4 ? (currentOppa.value += 1) : (currentOppa.value = 0);
@@ -200,20 +185,33 @@ function nutClick() {
     currentOppa.value == 4 ? oppa4Anim() : null;
   }
 
-  less4 ? (currentNut.value += 1) : (currentNut.value = 1);
-
   window.requestAnimationFrame(removeScale);
 }
 
+function checkEnergy() {
+  setInterval(() => {
+    currentEnergy.value < 1000 ? currentEnergy.value++ : null;
+  }, 3000);
+}
+
 onMounted(() => {
-  document.querySelector(".clicker_block").addEventListener(
+  document.querySelector(".main").addEventListener(
     "touchmove",
     function (event) {
       event.preventDefault();
     },
     { passive: false }
   );
+
+  checkEnergy();
 });
+
+watch(
+  userNutsCount,
+  debounce(() => {
+    console.log("check");
+  }, 500)
+);
 </script>
 
 <style lang="scss" scoped>
@@ -449,7 +447,6 @@ onMounted(() => {
         align-items: center;
         justify-content: left;
         .nutImage {
-          display: none;
           position: absolute;
           z-index: 2;
           max-width: 70%;
@@ -479,6 +476,7 @@ onMounted(() => {
           display: block;
         }
         .cup {
+          position: absolute;
           width: 75%;
           height: 75%;
           z-index: 2;

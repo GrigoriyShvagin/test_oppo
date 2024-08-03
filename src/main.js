@@ -2,4 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
-createApp(App).use(router).mount("#app");
+import VueLodash from "vue-lodash";
+import lodash from "lodash";
+
+createApp(App)
+  .use((VueLodash, { name: "custom", lodash: lodash }))
+  .use(router)
+  .mount("#app");

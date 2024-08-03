@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "vue": "^3.4.31",
+    "vue-lodash": "^2.1.2",
     "vue-router": "^4.4.0",
     "vue-tg": "^0.7.0"
   },
