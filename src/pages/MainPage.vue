@@ -246,11 +246,9 @@ onBeforeUnmount(() => {
 watch(
   currentNutsCount,
   debounce(() => {
-    const date = new Date().toISOString();
     userStore.changeNutsCount({
       energy: currentEnergy.value,
       nuts: userInfo.value.nuts,
-      lastSeen: date,
     });
     localStorage.setItem("lastSeen", date);
   }, 500)

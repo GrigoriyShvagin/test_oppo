@@ -16,7 +16,8 @@ export const useUserStore = defineStore("uesr", {
   actions: {
     async plusEnergy() {
       this.userInfoData.energy += 1;
-      const date = new Date().toISOString();
+      await this.getCurrentTime();
+      const date = new Date(this.currentDateState).toISOString();
       this.changeNutsCount({
         energy: this.userInfoData.energy,
         lastSeen: date,
@@ -26,7 +27,9 @@ export const useUserStore = defineStore("uesr", {
       this.userInfoData.energy -= 1;
       this.userInfoData.nuts += 1;
     },
-    async changeNutsCount({ energy, lastSeen, nuts }) {
+    async changeNutsCount({ energy, nuts }) {
+      await this.getCurrentTime();
+      let lastSeen = new Date(this.currentDateState).toISOString();
       const params = { energy, lastSeen, nuts };
       const result = await axios.patch(`${url}/user-profile/edit`, params, {
         headers: headers,
@@ -49,31 +52,35 @@ export const useUserStore = defineStore("uesr", {
     },
     async getCurrentTime() {
       const result = await axios.get(
-        `http://worldtimeapi.org/api/timezone/Europe/Paris`
+        `http://worldtimeapi.org/api/timezone/Europe/Moscow`
       );
-      this.currentDateState = result.data;
+      let date = new Date();
+      let dateMinus = new Date(result.data.datetime);
+
+      this.currentDateState = result.data.datetime;
       return result.data;
     },
     async setnewEnergy(result) {
       await this.getCurrentTime();
-      let currentTime = this.currentDateState.datetime;
-      console.log(currentTime);
+      let currentTime = new Date(this.currentDateState);
 
       const lastSeen = new Date(localStorage.getItem("lastSeen"));
 
-      // const diffMin = Math.floor(diffMiliSec / (1000 * 60));
-      // let energy = 0;
-      // if (diffMin >= 0) {
-      //   result.data.energy + diffMin > 1000
-      //     ? (energy = 1000)
-      //     : (energy = result.data.energy + diffMin);
-      //   this.changeNutsCount({
-      //     energy: energy,
-      //     nuts: result.data.nuts,
-      //     lastSeen: currentDate.toISOString(),
-      //   });
-      //   localStorage.setItem("lastSeen", currentDate.toISOString());
-      // }
+      const diffMiliSec = currentTime - lastSeen;
+
+      const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      let energy = 0;
+      if (diffMin >= 0) {
+        result.data.energy + diffMin > 1000
+          ? (energy = 1000)
+          : (energy = result.data.energy + diffMin);
+        this.changeNutsCount({
+          energy: energy,
+          nuts: result.data.nuts,
+          lastSeen: currentTime.toISOString(),
+        });
+        localStorage.setItem("lastSeen", currentTime.toISOString());
+      }
     },
   },
 });
