@@ -52,12 +52,11 @@ export const useUserStore = defineStore("uesr", {
     },
     async getCurrentTime() {
       const result = await axios.get(
-        `http://worldtimeapi.org/api/timezone/Europe/Moscow`
+        `https://worldtimeapi.org/api/timezone/Europe/Moscow`
       );
       let dateMinus = new Date(result.data.datetime);
 
       this.currentDateState = result.data.datetime;
-      console.log(result.data);
       return result.data;
     },
     async setnewEnergy(result) {
