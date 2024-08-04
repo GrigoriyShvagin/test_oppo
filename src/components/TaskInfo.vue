@@ -50,12 +50,12 @@ function checkFunc() {
 
 defineProps({
   show: { type: Boolean, default: false },
-  img: { type: String, default: "/images/tasks/Task1.png" },
-  link: { type: String, default: "https://google.com" },
-  textInfo: { type: String, default: "Перейдите по ссылке" },
-  buttonText: { type: String, default: "Выполнить задание" },
+  img: { type: String },
+  link: { type: String },
+  textInfo: { type: String },
+  buttonText: { type: String },
   bonus: { type: String, default: null },
-  nuts: { type: Number, default: 0 },
+  nuts: { type: Number, default: null },
 });
 const emit = defineEmits();
 
