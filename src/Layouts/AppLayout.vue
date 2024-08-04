@@ -1,7 +1,6 @@
 <template>
   <p class="">
-    {{ tg.user.id }}
-    {{ tg.user?.photo_url }}
+    {{ tg.user }}
   </p>
   <div class="content">
     <router-view />
