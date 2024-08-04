@@ -1,11 +1,13 @@
 <template>
   <div class="main">
     <TaskInfo
-      v-if="currentTask != null"
       :show="currentTask != null"
-      :img="currentTask.img"
-      :textInfo="currentTask.textInfo"
-      :buttonText="currentTask.buttonText"
+      :img="currentTask?.photo"
+      :textInfo="currentTask?.text"
+      :buttonText="currentTask?.buttonText"
+      :link="currentTask?.link"
+      :nuts="currentTask?.nuts"
+      :bonus="currentTask?.bonus"
       @closed="currentTask = null"
     />
     <div class="content">
@@ -29,22 +31,27 @@
         <div
           class="task"
           v-if="currMenu == 'New'"
-          v-for="item in allTasks.new"
+          v-for="item in tasksList"
           :key="item"
         >
-          <img class="task_img" :src="item.img" alt="" />
+          <img class="task_img" :src="item.photo" alt="" />
           <div class="task_content">
             <p class="task_text">{{ item.description }}</p>
             <p
               class="nutsCount"
               :class="{
                 bonusP: item.bonus != null,
-                zaeb: item.id == 4,
-                k: item.id == 5,
+                zaeb: item.bonus == 'nuts',
+                k: item.bonus == 'energy',
               }"
             >
               + {{ item.nuts }} <img src="/images/NutStage1.png" alt="" />
-              <span class="bonus">{{ item.bonus }}</span>
+              <span class="bonus" v-if="item.bonus == 'nuts'"
+                >+ 3 ореха за 1 удар
+              </span>
+              <span class="bonus" v-if="item.bonus == 'energy'"
+                >x2 восстановление энергии
+              </span>
             </p>
           </div>
           <button @click="showModal(item)">Начать</button>
@@ -55,12 +62,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { WhiteBorder } from "../assets";
 import TaskInfo from "../components/TaskInfo.vue";
+import { useTaskStore } from "../store/taskStore";
 let currMenu = ref("New");
 
 let currentTask = ref(null);
+
+const taskStore = useTaskStore();
+let tasksList = computed(() => taskStore.tasksList);
 
 const allTasks = {
   new: [
@@ -73,6 +84,7 @@ const allTasks = {
       bonusCount: null,
       textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
       buttonText: "Смотреть видео!",
+      link: "https://oppo.ru",
     },
     {
       id: 4,
@@ -83,6 +95,7 @@ const allTasks = {
       bonusCount: "energy",
       textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
       buttonText: "Смотреть видео!",
+      link: "https://vk.com/oppo_russia",
     },
     {
       id: 3,
@@ -93,6 +106,7 @@ const allTasks = {
       bonusCount: "nuts",
       textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
       buttonText: "Смотреть видео!",
+      link: "https://t.me/opporussia_official",
     },
     {
       id: 2,
@@ -103,6 +117,7 @@ const allTasks = {
       bonusCount: null,
       textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
       buttonText: "Смотреть видео!",
+      link: null,
     },
     {
       id: 5,
@@ -110,9 +125,10 @@ const allTasks = {
       nuts: 50000,
       bonus: null,
       img: "/images/tasks/Task5.png",
-      bonysCount: null,
+      bonusCount: null,
       textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
       buttonText: "Смотреть видео!",
+      link: null,
     },
   ],
   made: [
@@ -146,8 +162,11 @@ const allTasks = {
 
 function showModal(item) {
   currentTask.value = item;
-  console.log(currentTask.value);
 }
+
+onMounted(() => {
+  taskStore.getTasks();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -215,7 +234,7 @@ function showModal(item) {
             img {
               width: 30px;
               height: 30px;
-              left: 35px;
+              left: 40px;
               bottom: -10px;
               position: absolute;
             }
@@ -224,11 +243,12 @@ function showModal(item) {
         .zaeb {
           img {
             top: -7px;
+            left: 35px !important;
           }
         }
         .k {
           img {
-            left: 40px !important;
+            left: 35px !important;
           }
         }
         button {
@@ -330,6 +350,11 @@ function showModal(item) {
   .tasks_list {
     height: calc(50% - 20vw) !important;
     max-height: calc(50% - 20vw) !important;
+  }
+}
+@media screen and (max-width: 434px) {
+  .k img {
+    top: -7px;
   }
 }
 </style>

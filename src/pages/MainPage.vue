@@ -16,7 +16,7 @@
             <img v-if="tg.user != null" :src="tg.user.photo_url" alt="" />
             <img v-else :src="user.image" alt="" />
             <p class="name">
-              {{ userInfo.firstName + " " + userInfo.lastName }}
+              {{ userInfo?.firstName + " " + userInfo?.lastName }}
             </p>
           </div>
           <div class="quests_info">
@@ -29,7 +29,7 @@
         </div>
         <div class="nuts_block">
           <span>Всего у Вас:</span>
-          <p>{{ userInfo.nuts }} <img src="/images/NutStage1.png" alt="" /></p>
+          <p>{{ userInfo?.nuts }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
             <p>{{ userInfo.energy }}/ 1000</p>
             <p
               class="energyIcon"
-              :class="{ activeEnergy: userInfo.bonus != null }"
+              :class="{ activeEnergy: userInfo?.bonus != null }"
               ref="energyIcon"
             >
               <RocketsSvg />

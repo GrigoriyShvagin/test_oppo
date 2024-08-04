@@ -34,8 +34,8 @@ export const useUserStore = defineStore("uesr", {
       this.userInfoData.energy = energy;
       return result.data;
     },
-    async setUserData({ username, firstName, lastName, id, photo }) {
-      const params = { username, firstName, lastName, id, photo };
+    async setUserData({ username, firstName, lastName, id }) {
+      const params = { username, firstName, lastName, id };
       const result = await axios.post(`${url}/auth/init`, params);
       localStorage.setItem("token", result.data.token);
     },
@@ -49,7 +49,7 @@ export const useUserStore = defineStore("uesr", {
     },
     async getCurrentTime() {
       const result = await axios.get(
-        `http://worldtimeapi.org/api/timezone/Europe/Moscow`
+        `http://worldtimeapi.org/api/timezone/Europe/Paris`
       );
       this.currentDateState = result.data;
       return result.data;

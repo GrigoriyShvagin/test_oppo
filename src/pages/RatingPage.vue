@@ -38,13 +38,6 @@
       </div>
       <div class="person_block">
         <div class="info_block">
-          <img
-            class="avatar_url"
-            v-if="currentUser.photo"
-            :src="currentUser?.img"
-            alt=""
-          />
-          <img class="avatar_url" v-else src="/images/avatar_url.png" alt="" />
           <p>
             <span class="name">{{
               currentUser.firstName + " " + currentUser.lastName

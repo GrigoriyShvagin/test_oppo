@@ -1,7 +1,5 @@
 <template>
-  <p class="">
-    {{ tg.user }}
-  </p>
+  <p class=""></p>
   <div class="content">
     <router-view />
     <Footer />
@@ -23,7 +21,6 @@ function checkToken() {
       username: tg.user.username,
       firstName: tg.user.first_name,
       lastName: tg.user.last_name,
-      photo: tg.user.photo_url,
       id: tg.user.id,
     });
   } else {
