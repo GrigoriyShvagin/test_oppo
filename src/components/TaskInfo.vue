@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, onUnmounted } from "vue";
+import { defineProps, defineEmits, ref } from "vue";
 
 import { CloseIcon } from "../assets";
 
@@ -75,7 +75,7 @@ const close = () => {
   transition: all 0.5s ease;
   width: 100vw;
   height: 83vh;
-  transform: translateY(83vh);
+  transform: translate3d(0, 83vh, 0);
   position: fixed;
   bottom: 0;
   z-index: 3;
@@ -187,6 +187,6 @@ const close = () => {
 }
 .active {
   transition: all 0.5s ease;
-  transform: none;
+  transform: translate3d(0, 0, 0);
 }
 </style>
