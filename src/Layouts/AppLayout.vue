@@ -1,6 +1,9 @@
 <template>
-  <div class="content">
+  <p class="">
+    {{ tg.user.id }}
     {{ tg.user?.photo_url }}
+  </p>
+  <div class="content">
     <router-view />
     <Footer />
   </div>
@@ -40,6 +43,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+p {
+  color: white;
+}
 .content {
   overflow: hidden;
   overscroll-behavior: contain;
