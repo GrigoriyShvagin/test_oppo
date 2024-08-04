@@ -19,9 +19,11 @@ import WhiteBorder from "./UI/WhiteBorder.vue";
 import Present from "./UI/Present.vue";
 import IconInvite from "./UI/IconInvite.vue";
 import EarnGreen from "./UI/EarnGreen.vue";
+import CloseIcon from "./UI/CloseIcon.vue";
 
 export {
   Present,
+  CloseIcon,
   EarnGreen,
   IconInvite,
   WhiteLight,

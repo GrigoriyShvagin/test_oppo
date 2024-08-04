@@ -8,9 +8,10 @@ const headers = {
 };
 
 export const useUserStore = defineStore("uesr", {
-  state: () => ({ userInfoData: {} }),
+  state: () => ({ userInfoData: {}, currentDateState: {} }),
   getters: {
     userInfo: (state) => state.userInfoData,
+    currentDate: (state) => state.currentDateState,
   },
   actions: {
     async plusEnergy() {
@@ -33,8 +34,8 @@ export const useUserStore = defineStore("uesr", {
       this.userInfoData.energy = energy;
       return result.data;
     },
-    async setUserData({ username, firstName, lastName, id }) {
-      const params = { username, firstName, lastName, id };
+    async setUserData({ username, firstName, lastName, id, photo }) {
+      const params = { username, firstName, lastName, id, photo };
       const result = await axios.post(`${url}/auth/init`, params);
       localStorage.setItem("token", result.data.token);
     },
@@ -46,25 +47,32 @@ export const useUserStore = defineStore("uesr", {
       this.setnewEnergy(result);
       return result.data;
     },
-    setnewEnergy(result) {
-      const currentDate = new Date();
+    async getCurrentTime() {
+      const result = await axios.get(
+        `http://worldtimeapi.org/api/timezone/Europe/Moscow`
+      );
+      this.currentDateState = result.data;
+      return result.data;
+    },
+    async setnewEnergy(result) {
+      await this.getCurrentTime();
+      console.log(this.currentDateState);
 
       const lastSeen = new Date(localStorage.getItem("lastSeen"));
 
-      const diffMiliSec = currentDate - lastSeen;
-      const diffMin = Math.floor(diffMiliSec / (1000 * 60));
-      let energy = 0;
-      if (diffMin >= 0) {
-        result.data.energy + diffMin > 1000
-          ? (energy = 1000)
-          : (energy = result.data.energy + diffMin);
-        this.changeNutsCount({
-          energy: energy,
-          nuts: result.data.nuts,
-          lastSeen: currentDate.toISOString(),
-        });
-        localStorage.setItem("lastSeen", currentDate.toISOString());
-      }
+      // const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      // let energy = 0;
+      // if (diffMin >= 0) {
+      //   result.data.energy + diffMin > 1000
+      //     ? (energy = 1000)
+      //     : (energy = result.data.energy + diffMin);
+      //   this.changeNutsCount({
+      //     energy: energy,
+      //     nuts: result.data.nuts,
+      //     lastSeen: currentDate.toISOString(),
+      //   });
+      //   localStorage.setItem("lastSeen", currentDate.toISOString());
+      // }
     },
   },
 });

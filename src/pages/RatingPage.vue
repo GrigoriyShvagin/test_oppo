@@ -32,19 +32,31 @@
                 >
               </p>
             </div>
-            <div class="place">{{ item.id }}</div>
+            <div class="place">{{ item.place }}</div>
           </div>
         </div>
       </div>
       <div class="person_block">
         <div class="info_block">
-          <img class="avatar_url" src="/images/avatar_url.png" alt="" />
+          <img
+            class="avatar_url"
+            v-if="currentUser.photo"
+            :src="currentUser?.img"
+            alt=""
+          />
+          <img class="avatar_url" v-else src="/images/avatar_url.png" alt="" />
           <p>
-            <span class="name">Я</span
-            ><span><img src="/images/NutStage1.png" alt="" />321</span>
+            <span class="name">{{
+              currentUser.firstName + " " + currentUser.lastName
+            }}</span
+            ><span
+              ><img src="/images/NutStage1.png" alt="" />{{
+                currentUser.nuts
+              }}</span
+            >
           </p>
         </div>
-        <div class="place">0</div>
+        <div class="place">{{ currentUser.place }}</div>
       </div>
     </div>
   </div>
@@ -54,10 +66,13 @@
 import { WhiteLight } from "../assets";
 import { onMounted, computed } from "vue";
 import { useRatingStore } from "../store/ratingStore";
+import { useUserStore } from "../store/userStore";
 
 const ratingStore = useRatingStore();
+const userStore = useUserStore();
 
 let ratingList = computed(() => ratingStore.ratingInfo);
+let currentUser = computed(() => userStore.userInfo);
 
 const leadersList = [
   { id: 1, name: "Benjamin", photo: "/images/avatar_url.png", nutsCount: 322 },
@@ -76,6 +91,7 @@ const leadersList = [
 
 onMounted(() => {
   ratingStore.getRatingInfo();
+  userStore.getUserData();
 });
 </script>
 

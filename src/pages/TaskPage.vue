@@ -1,5 +1,13 @@
 <template>
   <div class="main">
+    <TaskInfo
+      v-if="currentTask != null"
+      :show="currentTask != null"
+      :img="currentTask.img"
+      :textInfo="currentTask.textInfo"
+      :buttonText="currentTask.buttonText"
+      @closed="currentTask = null"
+    />
     <div class="content">
       <WhiteBorder class="white_border" /><img
         src="/images/NutStage1.png"
@@ -24,11 +32,7 @@
           v-for="item in allTasks.new"
           :key="item"
         >
-          <img
-            class="task_img"
-            :src="'/images/tasks/Task' + item.id + '.png'"
-            alt=""
-          />
+          <img class="task_img" :src="item.img" alt="" />
           <div class="task_content">
             <p class="task_text">{{ item.description }}</p>
             <p
@@ -43,7 +47,7 @@
               <span class="bonus">{{ item.bonus }}</span>
             </p>
           </div>
-          <button>Начать</button>
+          <button @click="showModal(item)">Начать</button>
         </div>
       </div>
     </div>
@@ -51,9 +55,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { WhiteBorder } from "../assets";
+import TaskInfo from "../components/TaskInfo.vue";
 let currMenu = ref("New");
+
+let currentTask = ref(null);
 
 const allTasks = {
   new: [
@@ -62,30 +69,50 @@ const allTasks = {
       description: "Посетить официальный онлайн-магазин OPPO",
       nuts: 5000,
       bonus: null,
+      img: "/images/tasks/Task1.png",
+      bonusCount: null,
+      textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
+      buttonText: "Смотреть видео!",
     },
     {
       id: 4,
       description: "Подписаться на OPPO в ВК ",
       nuts: 5000,
       bonus: "+ x2 восстановление энергии",
+      img: "/images/tasks/Task4.png",
+      bonusCount: "energy",
+      textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
+      buttonText: "Смотреть видео!",
     },
     {
       id: 3,
       description: "Подписаться на OPPO в Telegram ",
       nuts: 5000,
       bonus: "+ 3 ореха за 1 удар",
+      img: "/images/tasks/Task3.png",
+      bonusCount: "nuts",
+      textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
+      buttonText: "Смотреть видео!",
     },
     {
       id: 2,
       description: "Смотреть видео на YouTube",
       nuts: 1000,
       bonus: null,
+      img: "/images/tasks/Task2.png",
+      bonusCount: null,
+      textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
+      buttonText: "Смотреть видео!",
     },
     {
       id: 5,
       description: "Снять видео в М.Видео",
       nuts: 50000,
       bonus: null,
+      img: "/images/tasks/Task5.png",
+      bonysCount: null,
+      textInfo: "Узнайте больше про суперкрепкую новинку OPPO!",
+      buttonText: "Смотреть видео!",
     },
   ],
   made: [
@@ -116,6 +143,11 @@ const allTasks = {
     },
   ],
 };
+
+function showModal(item) {
+  currentTask.value = item;
+  console.log(currentTask.value);
+}
 </script>
 
 <style lang="scss" scoped>
