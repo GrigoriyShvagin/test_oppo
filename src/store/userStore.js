@@ -56,7 +56,8 @@ export const useUserStore = defineStore("uesr", {
     },
     async setnewEnergy(result) {
       await this.getCurrentTime();
-      console.log(this.currentDateState);
+      let currentTime = this.currentDateState.datetime;
+      console.log(currentTime);
 
       const lastSeen = new Date(localStorage.getItem("lastSeen"));
 
