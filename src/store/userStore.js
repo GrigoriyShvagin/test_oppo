@@ -54,7 +54,6 @@ export const useUserStore = defineStore("uesr", {
       const result = await axios.get(
         `http://worldtimeapi.org/api/timezone/Europe/Moscow`
       );
-      let date = new Date();
       let dateMinus = new Date(result.data.datetime);
 
       this.currentDateState = result.data.datetime;
