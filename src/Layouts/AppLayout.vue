@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    {{ tg.user?.photo_url }}
     <router-view />
     <Footer />
   </div>
