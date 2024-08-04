@@ -75,9 +75,8 @@ const close = () => {
   transition: all 0.5s ease;
   width: 100vw;
   height: 83vh;
-  transform: translate3d(0, 83vh, 0);
   position: fixed;
-  bottom: 0;
+  bottom: -83vh;
   z-index: 3;
   background: #201f1c;
   display: flex;
@@ -187,6 +186,6 @@ const close = () => {
 }
 .active {
   transition: all 0.5s ease;
-  transform: translate3d(0, 0, 0);
+  bottom: 0;
 }
 </style>
