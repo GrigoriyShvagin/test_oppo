@@ -57,6 +57,7 @@ export const useUserStore = defineStore("uesr", {
       let dateMinus = new Date(result.data.datetime);
 
       this.currentDateState = result.data.datetime;
+      console.log(result.data);
       return result.data;
     },
     async setnewEnergy(result) {
