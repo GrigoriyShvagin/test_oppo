@@ -65,7 +65,7 @@
             <p>{{ userInfo.energy }}/ 1000</p>
             <p
               class="energyIcon"
-              :class="{ activeEnergy: userInfo?.bonuses != null }"
+              :class="{ activeEnergy: userInfo?.bonuses != '' }"
               ref="energyIcon"
             >
               <RocketsSvg />
