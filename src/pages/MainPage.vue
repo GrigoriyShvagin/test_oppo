@@ -586,6 +586,8 @@ watch(
           max-height: 112px;
           position: absolute;
           bottom: -20px;
+          left: 110px;
+          bottom: -20px;
           transform: rotate(20deg);
         }
       }
