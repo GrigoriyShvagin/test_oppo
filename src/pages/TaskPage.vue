@@ -8,6 +8,7 @@
       :link="currentTask?.link"
       :nuts="currentTask?.nuts"
       :bonus="currentTask?.bonus"
+      :id="currentTask?.id"
       @closed="currentTask = null"
     />
     <div class="content">
@@ -20,10 +21,10 @@
         Выполняйте задания и получайте больше орехов и энергии
       </p>
       <div class="swaper">
-        <p @click="currMenu = 'New'" :class="{ active: currMenu == 'New' }">
+        <p @click="setCurrMenu('New')" :class="{ active: currMenu == 'New' }">
           Новые
         </p>
-        <p @click="currMenu = 'Made'" :class="{ active: currMenu == 'Made' }">
+        <p @click="setCurrMenu('Made')" :class="{ active: currMenu == 'Made' }">
           Выполненные
         </p>
       </div>
@@ -56,6 +57,34 @@
           </div>
           <button @click="showModal(item)">Начать</button>
         </div>
+        <div
+          class="task made"
+          v-if="currMenu == 'Made'"
+          v-for="item in completedTaskList"
+          :key="item"
+        >
+          <img class="task_img" :src="item.photo" alt="" />
+          <div class="task_content">
+            <p class="task_text">{{ item.description }}</p>
+            <p
+              class="nutsCount"
+              :class="{
+                bonusP: item.bonus != null,
+                zaeb: item.bonus == 'nuts',
+                k: item.bonus == 'energy',
+              }"
+            >
+              + {{ item.nuts }} <img src="/images/NutStage1.png" alt="" />
+              <span class="bonus" v-if="item.bonus == 'nuts'"
+                >+ 3 ореха за 1 удар
+              </span>
+              <span class="bonus" v-if="item.bonus == 'energy'"
+                >x2 восстановление энергии
+              </span>
+            </p>
+            <span></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -72,6 +101,7 @@ let currentTask = ref(null);
 
 const taskStore = useTaskStore();
 let tasksList = computed(() => taskStore.tasksList);
+let completedTaskList = computed(() => taskStore.completedTasksList);
 
 const allTasks = {
   new: [
@@ -160,19 +190,26 @@ const allTasks = {
   ],
 };
 
+function setCurrMenu(str) {
+  currMenu.value = str;
+}
+
 function showModal(item) {
   currentTask.value = item;
 }
 
 onMounted(() => {
   taskStore.getTasks();
+  taskStore.getCompletedTasks();
 });
 </script>
 
 <style lang="scss" scoped>
 .main {
+  color: white;
   overscroll-behavior: contain;
   width: 100vw;
+  min-height: 100vh;
   background-color: #060606;
   display: flex;
   justify-content: center;
@@ -254,13 +291,16 @@ onMounted(() => {
         button {
           background: #2cff74;
           color: #2c9a4c;
-          font-size: 10px;
-          font-weight: 700;
-          line-height: 9px;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 14px;
           padding: 10px 15px;
           border: none;
           border-radius: 5px;
         }
+      }
+      .made {
+        justify-content: space-around;
       }
     }
     .header_text {

@@ -14,23 +14,30 @@ export const useUserStore = defineStore("uesr", {
     currentDate: (state) => state.currentDateState,
   },
   actions: {
-    async plusEnergy() {
-      this.userInfoData.energy += 1;
+    async plusEnergy({ energyBonus }) {
+      energyBonus
+        ? (this.userInfoData.energy += 2)
+        : (this.userInfoData.energy += 1);
       await this.getCurrentTime();
       const date = new Date(this.currentDateState).toISOString();
       this.changeNutsCount({
         energy: this.userInfoData.energy,
         lastSeen: date,
+        fields: ["energy", "lastSeen"],
+        used: true,
       });
     },
-    click() {
+
+    click({ energyBonus, nutsBonus }) {
+      nutsBonus ? (this.userInfoData.nuts += 3) : (this.userInfoData.nuts += 1);
       this.userInfoData.energy -= 1;
-      this.userInfoData.nuts += 1;
     },
-    async changeNutsCount({ energy, nuts }) {
-      await this.getCurrentTime();
+
+    async changeNutsCount({ energy, nuts, used, fields }) {
+      used ? null : await this.getCurrentTime();
       let lastSeen = new Date(this.currentDateState).toISOString();
-      const params = { energy, lastSeen, nuts };
+
+      const params = { energy, lastSeen, nuts, fields };
       const result = await axios.patch(`${url}/user-profile/edit`, params, {
         headers: headers,
       });
@@ -51,23 +58,29 @@ export const useUserStore = defineStore("uesr", {
       return result.data;
     },
     async getCurrentTime() {
-      const result = await axios.get(
-        `https://worldtimeapi.org/api/timezone/Europe/Moscow`
-      );
-      let dateMinus = new Date(result.data.datetime);
+      const result = await axios.get(`${url}/utils/get-current-date`);
+      let dateMinus = new Date(result.data);
 
-      this.currentDateState = result.data.datetime;
+      this.currentDateState = result.data;
       return result.data;
     },
     async setnewEnergy(result) {
       await this.getCurrentTime();
+      let user = this.userInfoData.bonuses?.split(", ");
+      let energyBonus = false;
+      user.forEach((e) => {
+        e == "energy" ? (energyBonus = true) : null;
+      });
       let currentTime = new Date(this.currentDateState);
 
       const lastSeen = new Date(localStorage.getItem("lastSeen"));
 
-      const diffMiliSec = currentTime - lastSeen;
+      let diffMiliSec = currentTime - lastSeen;
 
-      const diffMin = Math.floor(diffMiliSec / (1000 * 60));
+      let diffMin = Math.floor(diffMiliSec / (1000 * 60));
+
+      energyBonus ? (diffMin *= 2) : null;
+
       let energy = 0;
       if (diffMin >= 0) {
         result.data.energy + diffMin > 1000
@@ -77,6 +90,8 @@ export const useUserStore = defineStore("uesr", {
           energy: energy,
           nuts: result.data.nuts,
           lastSeen: currentTime.toISOString(),
+          used: true,
+          fields: ["energy", "nuts", "lastSeen"],
         });
         localStorage.setItem("lastSeen", currentTime.toISOString());
       }

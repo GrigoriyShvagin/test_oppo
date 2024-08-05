@@ -16,7 +16,7 @@
           <span v-if="bonus == 'nuts'">+ 3 ореха за удар</span>
         </p>
       </div>
-      <div class="check_button" @click="checkFunc">Проверить</div>
+      <div class="check_button" @click="checkFunc(id)">Проверить</div>
       <p class="check checked" v-if="checked">Получено :)</p>
     </div>
   </div>
@@ -24,8 +24,10 @@
 
 <script setup>
 import { defineProps, defineEmits, ref } from "vue";
-
+import { useTaskStore } from "../store/taskStore";
 import { CloseIcon } from "../assets";
+
+const taskStore = useTaskStore();
 
 let check = ref(null);
 let isLoading = ref(false);
@@ -36,9 +38,13 @@ const isVisible = ref(false);
 let closeAnim = null;
 let checkedAnim = null;
 
-function checkFunc() {
+function checkFunc(id) {
   isLoading.value = true;
   check.value.style.opacity = 0.2;
+  taskStore.completeTask({ id }).then(() => {
+    taskStore.getCompletedTasks();
+    taskStore.getTasks();
+  });
   checkedAnim = setInterval(() => {
     isLoading.value = false;
     checked.value = true;
@@ -56,6 +62,7 @@ defineProps({
   buttonText: { type: String },
   bonus: { type: String, default: null },
   nuts: { type: Number, default: null },
+  id: { type: Number, default: 0 },
 });
 const emit = defineEmits();
 

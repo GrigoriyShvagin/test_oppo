@@ -65,7 +65,7 @@
             <p>{{ userInfo.energy }}/ 1000</p>
             <p
               class="energyIcon"
-              :class="{ activeEnergy: userInfo?.bonus != null }"
+              :class="{ activeEnergy: userInfo?.bonuses != null }"
               ref="energyIcon"
             >
               <RocketsSvg />
@@ -202,8 +202,16 @@ function vibrate() {
 
 function nutClick() {
   if (currentEnergy.value > 0) {
-    userStore.click();
-    currentNutsCount.value += 1;
+    let user = userInfo.value.bonuses.split(", ");
+
+    let nutsBonus = false;
+    let energyBonus = false;
+    user.forEach((e) => {
+      e == "nuts" ? (nutsBonus = true) : null;
+      e == "energy" ? (energyBonus = true) : null;
+    });
+    userStore.click({ energyBonus, nutsBonus });
+    nutsBonus ? (currentNutsCount.value += 3) : (currentNutsCount.value += 1);
   }
 
   if (userNutsCount.value % 2 == 0) {
@@ -218,15 +226,22 @@ function nutClick() {
 }
 
 function checkEnergy() {
+  let user = userInfo?.value?.bonuses?.split(", ");
+  let energyBonus = false;
+  user.forEach((e) => {
+    e == "energy" ? (energyBonus = true) : null;
+  });
   intervalId = setInterval(() => {
     if (currentEnergy.value < 1000) {
-      userStore.plusEnergy();
+      userStore.plusEnergy({ energyBonus });
     }
   }, 60000);
 }
 
 onMounted(() => {
-  userStore.getUserData();
+  userStore.getUserData().then(() => {
+    checkEnergy();
+  });
 
   document.querySelector(".main").addEventListener(
     "touchmove",
@@ -235,8 +250,6 @@ onMounted(() => {
     },
     { passive: false }
   );
-
-  checkEnergy();
 });
 
 onBeforeUnmount(() => {
@@ -249,8 +262,9 @@ watch(
     userStore.changeNutsCount({
       energy: currentEnergy.value,
       nuts: userInfo.value.nuts,
+      fields: ["energy", "nuts", "lastSeen"],
     });
-    localStorage.setItem("lastSeen", date);
+    localStorage.setItem("lastSeen", userInfo.value.lastSeen);
   }, 500)
 );
 </script>

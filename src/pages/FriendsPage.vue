@@ -4,6 +4,7 @@
       <div class="header_block">
         <p class="header">Приглашайте друзей!</p>
         <p class="sub_text">Вы оба получите дополнительные орехи</p>
+        <a :href="`https://t.me/share/url?url=${url}&text={text}`"></a>
       </div>
       <div class="invite_block">
         <div class="invite_content">
@@ -67,6 +68,7 @@ const friends = [];
       border-radius: 10px;
       display: flex;
       justify-content: center;
+      animation: scale 2s infinite;
       .invite_content {
         width: 100%;
         height: 100%;
@@ -74,6 +76,7 @@ const friends = [];
         background: #242424;
         display: flex;
         align-items: center;
+        transform: none;
         .present_icon {
           width: 40px;
           margin: 0 20px 0 20px;
@@ -137,7 +140,6 @@ const friends = [];
         line-height: 15.92px;
         letter-spacing: 0.05em;
         text-align: left;
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -192,6 +194,12 @@ const friends = [];
     }
   }
 }
+@keyframes scale {
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 @media screen and (min-height: 700px) {
   .friends_menu {
     height: 90% !important;
