@@ -13,8 +13,7 @@
       <div class="header_content">
         <div class="name_block">
           <div class="name_info">
-            <img v-if="tg.user != null" :src="tg.user.photo_url" alt="" />
-            <img v-else :src="`/images/UserIcon.svg`" alt="" />
+            <img :src="`/images/UserIcon.svg`" alt="" />
             <p class="name">
               {{ userInfo?.firstName + " " + userInfo?.lastName }}
             </p>
