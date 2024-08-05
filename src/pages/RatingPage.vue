@@ -18,7 +18,7 @@
               <img
                 class="avatar_url"
                 v-else
-                :src="'/images/avatar_url.png'"
+                :src="'/images/UserIcon.svg'"
                 alt=""
               />
               <p>
@@ -38,6 +38,7 @@
       </div>
       <div class="person_block">
         <div class="info_block">
+          <img class="avatar_url" :src="'/images/UserIcon.svg'" alt="" />
           <p>
             <span class="name">{{
               currentUser.firstName + " " + currentUser.lastName
@@ -128,8 +129,8 @@ onMounted(() => {
         font-weight: 700;
       }
       .avatar_url {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
       }
       p {
         margin: 0 0 0 20px;
@@ -209,8 +210,8 @@ onMounted(() => {
             }
           }
           .avatar_url {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
           }
         }
       }

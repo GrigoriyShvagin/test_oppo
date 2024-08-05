@@ -188,7 +188,7 @@ const friends = [];
       text-align: center;
     }
     .header {
-      font-size: 28px;
+      font-size: 6vw;
       font-weight: 600;
       margin-bottom: 10px;
     }

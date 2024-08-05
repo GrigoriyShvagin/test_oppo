@@ -124,7 +124,7 @@ const close = () => {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      width: 80%;
       p {
         display: flex;
         align-items: center;

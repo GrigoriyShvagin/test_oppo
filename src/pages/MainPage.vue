@@ -14,7 +14,7 @@
         <div class="name_block">
           <div class="name_info">
             <img v-if="tg.user != null" :src="tg.user.photo_url" alt="" />
-            <img v-else :src="user.image" alt="" />
+            <img v-else :src="`/images/UserIcon.svg`" alt="" />
             <p class="name">
               {{ userInfo?.firstName + " " + userInfo?.lastName }}
             </p>
@@ -311,8 +311,8 @@ watch(
           align-items: center;
           margin-bottom: 10px;
           img {
-            width: 35px;
-            height: 35px;
+            width: 28px;
+            height: 28px;
             margin-right: 10px;
           }
           p {
