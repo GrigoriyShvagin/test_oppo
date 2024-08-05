@@ -20,9 +20,19 @@ import Present from "./UI/Present.vue";
 import IconInvite from "./UI/IconInvite.vue";
 import EarnGreen from "./UI/EarnGreen.vue";
 import CloseIcon from "./UI/CloseIcon.vue";
+import ExchangeLight from "./UI/ExchangeLight.vue";
+import defaultCrack from "./UI/defaultCrack.vue";
+import TasksLight from "./UI/TasksLight.vue";
+import FriendsLight from "./UI/FriendsLight.vue";
+import RatingLight from "./UI/RatingLight.vue";
 
 export {
   Present,
+  RatingLight,
+  FriendsLight,
+  TasksLight,
+  ExchangeLight,
+  defaultCrack,
   CloseIcon,
   EarnGreen,
   IconInvite,

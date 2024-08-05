@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="nuts_block">
-          <span>Всего у Вас:</span>
+          <p class="nutsHeader">Всего у Вас:</p>
           <p>{{ userInfo?.nuts }} <img src="/images/NutStage1.png" alt="" /></p>
         </div>
       </div>
@@ -338,22 +338,25 @@ watch(
         }
       }
       .nuts_block {
-        width: 50%;
+        width: 40%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        span {
-          color: var(--dark-gray);
-          opacity: 30%;
-          font-size: 14px;
-        }
-        p {
+        justify-content: right;
+        align-items: end;
+        p:not(.nutsHeader) {
           display: flex;
           position: relative;
           font-weight: 700;
           font-size: 48px;
           line-height: 45px;
           align-items: center;
+        }
+        .nutsHeader {
+          width: 100%;
+          text-align: center;
+          color: var(--dark-gray);
+          opacity: 30%;
+          font-size: 14px;
         }
         img {
           margin-top: 2px;
@@ -583,7 +586,6 @@ watch(
           max-height: 112px;
           position: absolute;
           bottom: -20px;
-          right: -40px;
           transform: rotate(20deg);
         }
       }
@@ -605,6 +607,16 @@ watch(
 .shaker {
   animation: shake 0.1s linear;
 }
+@media screen and (max-width: 420px) {
+  .nuts_block p:not(.nutsHeader) {
+    font-size: 36px !important;
+    line-height: 40px !important;
+  }
+  .quests_count {
+    font-size: 14px !important;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .border {
     margin: 0;
