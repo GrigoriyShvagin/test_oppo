@@ -103,9 +103,7 @@ import {
       span {
         margin-top: 5px;
       }
-      svg {
-        transition: all 0.3s linear;
-      }
+
       svg:not(.crack, .exchange, .tasks) {
         width: 16px;
         height: 16px;
