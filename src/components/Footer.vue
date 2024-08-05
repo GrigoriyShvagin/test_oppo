@@ -48,6 +48,7 @@
 </template>
 
 <script setup>
+import { watch } from "vue";
 import {
   Tasks,
   ExchangeLight,
@@ -103,7 +104,7 @@ import {
         margin-top: 5px;
       }
       svg {
-        transition: 0.3s;
+        transition: all 0.3s linear;
       }
       svg:not(.crack, .exchange, .tasks) {
         width: 16px;
