@@ -52,7 +52,7 @@
           <img class="nutImage" ref="nutImage" :src="currentNut" />
         </div>
         <div class="energy_block">
-          <div class="energy_content">
+          <div class="energy_content" @click="$router.push('/tasks')">
             <div
               class="gradient"
               :style="{
@@ -444,7 +444,7 @@ watch(
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 22;
+        z-index: 40;
         border-radius: 70px;
         padding: 1px;
         .energy_content {
@@ -488,7 +488,6 @@ watch(
             justify-content: center;
             background: #c4bfb9;
             transition: 0.3s;
-            z-index: 2;
             svg {
               width: 20px;
               height: 20px;

@@ -4,7 +4,7 @@
     <div class="content">
       <div class="img_block"><img :src="img" alt="" @click="close" /></div>
       <p class="text_info">{{ textInfo }}</p>
-      <a :href="link" ref="check" class="button_block">
+      <a @click="tg.openLink(link)" ref="check" class="button_block">
         <p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </a>
@@ -28,6 +28,8 @@ import { useTaskStore } from "../store/taskStore";
 import { CloseIcon } from "../assets";
 
 const taskStore = useTaskStore();
+
+const tg = Telegram.WebApp;
 
 let check = ref(null);
 let isLoading = ref(false);
@@ -140,8 +142,11 @@ const close = () => {
     .check_button {
       margin-top: 30px;
       color: white;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 200;
+      padding: 15px 100px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1215686275);
     }
     .button_block {
       width: 60%;
@@ -153,6 +158,7 @@ const close = () => {
       position: relative;
       border-radius: 10vw;
       margin-bottom: 20px;
+      animation: scale 2s infinite;
       .button {
         display: flex;
         justify-content: center;
@@ -194,5 +200,10 @@ const close = () => {
 .active {
   transition: all 0.5s ease;
   bottom: 0;
+}
+@keyframes scale {
+  50% {
+    transform: scale(1.05);
+  }
 }
 </style>
