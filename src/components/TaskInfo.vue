@@ -10,7 +10,7 @@
       </a>
       <div class="reward">
         <p>
-          + {{ nuts }}
+          +{{ nuts }}
           <img src="/images/NutStage1.png" alt="" class="nut" />
           <span v-if="bonus == 'energy'">+ x2 восстановление энергии</span>
           <span v-if="bonus == 'nuts'">+ 3 ореха за удар</span>
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from "vue";
+import { defineEmits, ref } from "vue";
 import { useTaskStore } from "../store/taskStore";
 import { CloseIcon } from "../assets";
 
@@ -130,7 +130,7 @@ const close = () => {
       p {
         display: flex;
         align-items: center;
-        font-size: 20px;
+        font-size: 16px;
         color: white;
         font-weight: 700;
       }

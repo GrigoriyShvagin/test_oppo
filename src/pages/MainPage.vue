@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    {{ $route.fullPath }}
     <WhiteLight />
     <img
       src="/images/phone.png"
@@ -103,7 +104,6 @@ const user = {
   userEnergyCount: 20,
 };
 
-let tg = Telegram.WebApp.initDataUnsafe;
 const userStore = useUserStore();
 const userInfo = computed(() => userStore.userInfo);
 

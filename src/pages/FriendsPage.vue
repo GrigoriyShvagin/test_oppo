@@ -4,21 +4,25 @@
       <div class="header_block">
         <p class="header">Приглашайте друзей!</p>
         <p class="sub_text">Вы оба получите дополнительные орехи</p>
-        <a :href="`https://t.me/share/url?url=${url}&text={text}`"></a>
       </div>
-      <div class="invite_block">
-        <div class="invite_content">
-          <Present class="present_icon" />
-          <div class="text_block">
-            <p class="header">Пригласить друга</p>
-            <p class="content_text">
-              <img src="/images/NutStage1.png" alt="" />
-              <span> +10000 орехов для Вас и +5 000 для Вашего друга </span>
-            </p>
+      <a
+        :href="`https://t.me/share/url?url=${urlShare}${user.referralLink}&text=${text}`"
+        class=""
+      >
+        <div class="invite_block">
+          <div class="invite_content">
+            <Present class="present_icon" />
+            <div class="text_block">
+              <p class="header">Пригласить друга</p>
+              <p class="content_text">
+                <img src="/images/NutStage1.png" alt="" />
+                <span> +10000 орехов для Вас и +5 000 для Вашего друга </span>
+              </p>
+            </div>
+            <IconInvite class="icon_invite" />
           </div>
-          <IconInvite class="icon_invite" />
         </div>
-      </div>
+      </a>
       <div class="friends_menu">
         <WhiteLight class="whiteLight" />
         <div class="friends_block">
@@ -38,7 +42,23 @@
 </template>
 
 <script setup>
+import { computed, onMounted, ref } from "vue";
 import { Present, IconInvite, WhiteLight } from "../assets";
+
+import { useUserStore } from "../store/userStore";
+
+let userStore = useUserStore();
+
+let user = computed(() => userStore.userInfo);
+
+let text =
+  "Привет, я играю в OPPA, заходи по моей ссылке и получи 5000 орехов!)";
+
+let urlShare = ref("https://t.me/iosdifosdifp_bot?startapp=refId=");
+
+onMounted(() => {
+  userStore.getUserLink();
+});
 
 const friends = [];
 </script>
@@ -55,6 +75,12 @@ const friends = [];
     display: flex;
     flex-direction: column;
     align-items: center;
+    a {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      text-decoration: none;
+    }
     .invite_block {
       background: linear-gradient(
         253.35deg,

@@ -49,6 +49,15 @@ export const useUserStore = defineStore("uesr", {
       const result = await axios.post(`${url}/auth/init`, params);
       localStorage.setItem("token", result.data.token);
     },
+
+    async getUserLink() {
+      const result = await axios.get(`${url}/user-profile`, {
+        headers: headers,
+      });
+      this.userInfoData = result.data;
+      return result.data;
+    },
+
     async getUserData() {
       const result = await axios.get(`${url}/user-profile`, {
         headers: headers,
