@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    {{ $route.path }}
+    {{ currentHref }}
     {{ $route.query }}
     <WhiteLight />
     <img
@@ -104,6 +104,8 @@ const user = {
   questsCount: 0,
   userEnergyCount: 20,
 };
+
+let currentHref = window.location.href;
 
 const userStore = useUserStore();
 const userInfo = computed(() => userStore.userInfo);
