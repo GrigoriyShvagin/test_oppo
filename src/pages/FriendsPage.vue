@@ -46,10 +46,12 @@ import { computed, onMounted, ref } from "vue";
 import { Present, IconInvite, WhiteLight } from "../assets";
 
 import { useUserStore } from "../store/userStore";
+import { useFriendsStore } from "../store/FriendsStore";
 
 let userStore = useUserStore();
 
 let user = computed(() => userStore.userInfo);
+let freindsStore = useFriendsStore();
 
 let text =
   "Привет, я играю в OPPA, заходи по моей ссылке и получи 5000 орехов!)";
@@ -57,7 +59,10 @@ let text =
 let urlShare = ref("https://t.me/iosdifosdifp_bot?start=");
 
 onMounted(() => {
-  userStore.getUserLink();
+  userStore.getUserLink().then(() => {
+    console.log(user.value.username);
+    freindsStore.getFriendsList({ username: user.value.username });
+  });
 });
 
 const friends = [];

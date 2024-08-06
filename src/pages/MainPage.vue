@@ -20,10 +20,16 @@
           </div>
           <div class="quests_info">
             <div class="quests_count">
-              Задания <ThreeArrowsLeft class="arrows_left" />{{ 0 }}
+              Задания
+              <ThreeArrowsLeft class="arrows_left" />{{
+                userInfo?.acceptedTasksCount
+              }}
               / 18
             </div>
-            <QuestsCount :precent="user.questsCount / 5" />
+            <QuestsCount
+              v-if="userInfo?.acceptedTasksCount"
+              :precent="userInfo?.acceptedTasksCount / 18"
+            />
           </div>
         </div>
         <div class="nuts_block">
