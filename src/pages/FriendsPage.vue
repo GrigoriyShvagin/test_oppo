@@ -54,7 +54,7 @@ let user = computed(() => userStore.userInfo);
 let text =
   "Привет, я играю в OPPA, заходи по моей ссылке и получи 5000 орехов!)";
 
-let urlShare = ref("https://t.me/iosdifosdifp_bot?startapp=refId=");
+let urlShare = ref("https://t.me/iosdifosdifp_bot/start?startapp=refId=");
 
 onMounted(() => {
   userStore.getUserLink();
