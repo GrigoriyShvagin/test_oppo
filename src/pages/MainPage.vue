@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    {{ $route.fullPath }}
+    {{ $route.path }}
     <WhiteLight />
     <img
       src="/images/phone.png"
