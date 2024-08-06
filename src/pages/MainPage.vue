@@ -1,7 +1,5 @@
 <template>
   <div class="main">
-    {{ currentHref }}
-    {{ $route.query }}
     <WhiteLight />
     <img
       src="/images/phone.png"
