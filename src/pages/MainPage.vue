@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     {{ $route.path }}
+    {{ $route.query }}
     <WhiteLight />
     <img
       src="/images/phone.png"
