@@ -95,6 +95,7 @@ const friends = [];
       display: flex;
       justify-content: center;
       animation: scale 2s infinite;
+      z-index: 20;
       .invite_content {
         width: 100%;
         height: 100%;
