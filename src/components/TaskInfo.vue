@@ -11,10 +11,24 @@
         placeholder="Введите ссылку на ваше видео"
         class="inputLink"
       />
-      <a v-else @click="tg.openLink(link)" ref="check" class="button_block">
+      <a
+        v-else-if="id !== 2"
+        @click="tg.openLink(link)"
+        ref="check"
+        class="button_block"
+      >
         <p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </a>
+      <router-link
+        v-else-if="id == 2"
+        :to="'/friends'"
+        ref="check"
+        class="button_block"
+      >
+        <p class="button">{{ buttonText }}</p>
+        <div class="gradient" ref="gradient"></div>
+      </router-link>
       <div class="reward">
         <p>
           +{{ nuts }}
