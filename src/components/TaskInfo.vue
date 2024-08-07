@@ -3,7 +3,7 @@
     <CloseIcon @click="close" class="closeIcon" />
     <div class="content">
       <div class="img_block"><img :src="img" alt="" @click="close" /></div>
-      <p class="text_info">{{ textInfo }}</p>
+      <p class="text_info" :class="{ infoSmall: id == 6 }">{{ textInfo }}</p>
       <input
         v-if="id == 6"
         type="text"
@@ -12,21 +12,12 @@
         class="inputLink"
       />
       <a
-        v-else-if="id == 1"
-        @click="tg.openLink(`https://www.youtube.com/@OppoRussia`)"
-        ref="check"
-        class="button_block"
-        ><p class="button">{{ buttonText }}</p>
-        <div class="gradient" ref="gradient"></div
-      ></a>
-      <a
-        v-else-if="id !== 2"
+        v-if="id !== 2"
         @click="tg.openLink(link)"
         ref="check"
         class="button_block"
       >
-        <p class="button" v-if="id == 2">Пригласить друга</p>
-        <p class="button" v-else>{{ buttonText }}</p>
+        <p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </a>
       <router-link
@@ -51,12 +42,12 @@
         Проверить
       </div>
       <div
-        class="check_button"
+        class="check_button smappButton"
         ref="checkButton"
         v-else
         @click="sendLinkFunc(id)"
       >
-        Проверить
+        Отправить ссылку
       </div>
       <p class="check checked" v-if="checked">Получено :)</p>
     </div>
@@ -228,6 +219,9 @@ function changeBlur(e) {
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.1215686275);
     }
+    .smappButton {
+      margin-top: 10px;
+    }
     .button_block {
       width: 60%;
       height: 10%;
@@ -276,6 +270,9 @@ function changeBlur(e) {
       height: 50px;
     }
   }
+}
+.infoSmall {
+  margin-bottom: 5px !important;
 }
 .active {
   transition: all 0.5s ease;
