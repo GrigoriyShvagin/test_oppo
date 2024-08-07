@@ -8,22 +8,20 @@ const headers = {
 };
 
 export const useFriendsStore = defineStore("friends", {
-  state: () => ({ friendsListState: [] }),
+  state: () => ({ friendsListState: {} }),
   getters: {
     friendsList: (state) => state.friendsListState,
   },
   actions: {
     async getFriendsList({ username }) {
-      console.log(username);
       const url = "https://waterwa1ker-nuts-b1cb.twc1.net/graphql";
       const query = `query{
     person(username: "${username}") {
-        id
-        firstName
-        lastName
         referralOwners {
             referral {
                 username
+                firstName
+                nuts
             }
         }
     }

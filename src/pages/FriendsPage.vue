@@ -28,8 +28,35 @@
         <div class="friends_block">
           <div class="friends_content">
             <div class="header"><p>Список друзей</p></div>
-            <div class="friends_list" v-if="friends[0]">
-              <div class="friend" v-for="item in friends" :key="item.id"></div>
+            <div class="friends_list" v-if="friends">
+              <div class="friend_block" v-for="item in friends" :key="item.id">
+                <div
+                  class="friend"
+                  v-for="friend in item.person.referralOwners"
+                >
+                  <img src="/images/UserIcon.svg" alt="" />
+                  <p>
+                    <span
+                      class="name"
+                      v-if="
+                        friend.referral.firstName && friend.referral.lastName
+                      "
+                      >{{
+                        friend.referral.firstName +
+                        " " +
+                        friend.referral.lastName
+                      }}</span
+                    ><span class="name" v-else>{{
+                      friend.referral.firstName
+                    }}</span
+                    ><span
+                      ><img src="/images/NutStage1.png" alt="" />{{
+                        friend.referral.nuts
+                      }}</span
+                    >
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="noFriends" v-else>
               <p class="">У вас нет друзей :(</p>
@@ -53,19 +80,18 @@ let userStore = useUserStore();
 let user = computed(() => userStore.userInfo);
 let freindsStore = useFriendsStore();
 
+let friends = computed(() => freindsStore.friendsList);
+
 let text =
-  "Привет, я играю в OPPA, заходи по моей ссылке и получи 5000 орехов!)";
+  "Привет, я играю в #КрепкийOPPOрешек, заходи по моей ссылке и получи 5000 орехов!)";
 
 let urlShare = ref("https://t.me/iosdifosdifp_bot?start=");
 
 onMounted(() => {
   userStore.getUserLink().then(() => {
-    console.log(user.value.username);
-    freindsStore.getFriendsList({ username: user.value.username });
+    freindsStore.getFriendsList({ username: user?.value.username });
   });
 });
-
-const friends = [];
 </script>
 
 <style lang="scss" scoped>
@@ -182,10 +208,16 @@ const friends = [];
       .friends_list {
         display: flex;
         flex-direction: column;
-        height: 60%;
-        overflow: scroll;
+        min-height: 60%;
         scrollbar-width: none;
         align-items: center;
+        .friend_block {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         .friend {
           display: flex;
           width: 90%;
@@ -193,6 +225,30 @@ const friends = [];
           min-height: 50px;
           margin-bottom: 10px;
           border-radius: 10px;
+          align-items: center;
+          justify-content: space-around;
+          padding: 0px 10px;
+          color: white;
+          p {
+            display: flex;
+            width: 60%;
+          }
+          span:not(.name) {
+            display: flex;
+            font-size: 16px;
+            width: 20%;
+            align-items: center;
+          }
+          .name {
+            width: 80%;
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+          }
+          img {
+            height: 30px;
+            width: 30px;
+          }
         }
       }
       .header {

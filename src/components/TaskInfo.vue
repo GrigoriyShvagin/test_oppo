@@ -1,10 +1,17 @@
 <template>
-  <div :class="{ active: show }" class="task_main">
+  <div :class="{ active: show }" class="task_main" @click="changeBlur($event)">
     <CloseIcon @click="close" class="closeIcon" />
     <div class="content">
       <div class="img_block"><img :src="img" alt="" @click="close" /></div>
       <p class="text_info">{{ textInfo }}</p>
-      <a @click="tg.openLink(link)" ref="check" class="button_block">
+      <input
+        v-if="id == 6"
+        type="text"
+        v-model="inputLink"
+        placeholder="Введите ссылку на ваше видео"
+        class="inputLink"
+      />
+      <a v-else @click="tg.openLink(link)" ref="check" class="button_block">
         <p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </a>
@@ -16,20 +23,36 @@
           <span v-if="bonus == 'nuts'">+ 3 ореха за удар</span>
         </p>
       </div>
-      <div class="check_button" @click="checkFunc(id)">Проверить</div>
+      <div class="check_button" v-if="id !== 6" @click="checkFunc(id)">
+        Проверить
+      </div>
+      <div
+        class="check_button"
+        ref="checkButton"
+        v-else
+        @click="sendLinkFunc(id)"
+      >
+        Проверить
+      </div>
       <p class="check checked" v-if="checked">Получено :)</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineEmits, ref } from "vue";
+import { defineEmits, onMounted, ref } from "vue";
 import { useTaskStore } from "../store/taskStore";
 import { CloseIcon } from "../assets";
 
 const taskStore = useTaskStore();
 
 const tg = Telegram.WebApp;
+
+const inputLink = ref(null);
+
+const checkButton = ref(null);
+
+let isClicked = ref(false);
 
 let check = ref(null);
 let isLoading = ref(false);
@@ -56,6 +79,22 @@ function checkFunc(id) {
   }, 4000);
 }
 
+function sendLinkFunc(id) {
+  checkButton.value.style.opacity = 0.2;
+  isLoading.value = true;
+  if (isClicked.value !== true) {
+    taskStore.setLink({ id, link: inputLink.value });
+  }
+  checkedAnim = setInterval(() => {
+    isLoading.value = false;
+    closeAnim = setInterval(() => {
+      close();
+      emit("closed");
+    }, 800);
+  }, 4000);
+  isClicked.value = true;
+}
+
 defineProps({
   show: { type: Boolean, default: false },
   img: { type: String },
@@ -72,11 +111,16 @@ const close = () => {
   clearInterval(closeAnim);
   clearInterval(checkedAnim);
   checked.value = false;
-  check.value.style.opacity = 1;
 
   isVisible.value = false;
   emit("closed");
 };
+
+function changeBlur(e) {
+  if (!e.target.localName == "textarea" || !e.target.localName == "input") {
+    document.activeElement.blur();
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -121,6 +165,17 @@ const close = () => {
       text-align: center;
       color: white;
       margin-bottom: 40px;
+    }
+    .inputLink {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1215686275);
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      color: white;
+      outline: none;
     }
     .reward {
       display: flex;

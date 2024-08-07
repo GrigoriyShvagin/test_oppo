@@ -14,8 +14,11 @@
         <div class="name_block">
           <div class="name_info">
             <img :src="`/images/UserIcon.svg`" alt="" />
-            <p class="name">
+            <p class="name" v-if="userInfo?.firstName && userInfo?.lastName">
               {{ userInfo?.firstName + " " + userInfo?.lastName }}
+            </p>
+            <p class="name" v-else-if="userInfo?.firstname">
+              {{ userInfo?.firstName }}
             </p>
           </div>
           <div class="quests_info">

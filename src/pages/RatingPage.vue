@@ -22,9 +22,10 @@
                 alt=""
               />
               <p>
-                <span class="name">{{
+                <span class="name" v-if="item.firstName && item.lastName">{{
                   item.firstName + " " + item.lastName
                 }}</span
+                ><span class="name" v-else>{{ item.firstName }}</span
                 ><span
                   ><img src="/images/NutStage1.png" alt="" />{{
                     item.nuts
@@ -154,7 +155,6 @@ onMounted(() => {
     }
     .leaders_list {
       width: 100%;
-      overflow: scroll;
       scrollbar-width: none;
       display: flex;
       flex-direction: column;

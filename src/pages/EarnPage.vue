@@ -4,7 +4,18 @@
       <EarnGreen class="earnGreen" />
       <img src="/images/NutStage1.png" alt="" />
       <p class="header">200 000 000</p>
-      <button>Получить вознаграждение</button>
+      <button
+        v-if="
+          userInfo.nuts > 100000 && userInfo.acceptedTasksCount > 3 && currTime
+        "
+        @click="setMoney()"
+        class="wowButton"
+      >
+        Получить вознаграждение
+      </button>
+
+      <button v-else>Получить вознаграждение</button>
+      <div class="" id="payout-form"></div>
       <ul class="list_for_earn">
         Условия получения вознаграждения:
         <li>Серия активности: минимум 3 дня</li>
@@ -20,7 +31,31 @@
 </template>
 
 <script setup>
+import { computed, onMounted, ref } from "vue";
 import { EarnGreen } from "../assets";
+import { useUserStore } from "../store/userStore";
+import { useYookassaStore } from "../store/yookassaStore";
+
+const userStore = useUserStore();
+let userInfo = computed(() => userStore.userInfo);
+let yookassaStore = useYookassaStore();
+let currTime = ref(true);
+
+// function checkTime(firstReg, currTime) {
+//   let firstReg = new Date(firstReg);
+//   let currTime = new Date(userInfo?.lastSeen);
+//   console.log(currTime - firstReg);
+// }
+
+function setMoney() {
+  yookassaStore.getRedirectLink({ nuts: userInfo?.value.nuts });
+}
+
+onMounted(() => {
+  userStore.getUserData().then(() => {
+    // checkTime(userInfo.);
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -67,6 +102,10 @@ import { EarnGreen } from "../assets";
     line-height: 34px;
     text-align: center;
     letter-spacing: 3%;
+  }
+  .wowButton {
+    background: #2cff74;
+    color: black;
   }
   .earnGreen {
     position: absolute;

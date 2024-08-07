@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
+import withUUID from "vue-uuid";
 
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -11,7 +12,9 @@ import lodash from "lodash";
 
 const pinia = createPinia();
 
-createApp(App)
+const app = withUUID(createApp(App));
+
+app
   .use(VueAxios, axios)
   .use((VueLodash, { name: "custom", lodash: lodash }))
   .use(router)

@@ -19,6 +19,18 @@ export const useTaskStore = defineStore("task", {
       this.tasksListState = result.data;
       return result;
     },
+
+    async setLink({ id, link }) {
+      const result = await axios.post(
+        `${url}/tasks/${id}/post-link`,
+        { link },
+        {
+          headers: headers,
+        }
+      );
+      return result;
+    },
+
     async getCompletedTasks() {
       const result = await axios.get(`${url}/tasks/completed`, {
         headers: headers,
