@@ -5,7 +5,7 @@
       Ваш браузер не поддерживает видео.
     </video>
   </div>
-  <div class="content" v-else>
+  <div class="content">
     <router-view />
     <Footer />
   </div>
