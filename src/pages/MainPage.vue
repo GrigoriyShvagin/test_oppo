@@ -17,11 +17,8 @@
             <p class="name" v-if="userInfo?.firstName && userInfo?.lastName">
               {{ userInfo?.firstName + " " + userInfo?.lastName }}
             </p>
-            <p class="name" v-else-if="userInfo?.firstname">
+            <p class="name" v-else-if="userInfo?.firstName">
               {{ userInfo?.firstName }}
-            </p>
-            <p class="name" v-else-if="userInfo?.lastName">
-              {{ userInfo?.lastName }}
             </p>
           </div>
           <div class="quests_info">
