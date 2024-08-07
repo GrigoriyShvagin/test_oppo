@@ -203,7 +203,10 @@ function gotClick() {
   currentNut.value = "/images/nutGif.gif";
   nutImage.value.classList.add("nutGif");
   setTimeout(deleteGif, 120);
+}
 
+function vibrate() {
+  Telegram.WebApp.HapticFeedback.impactOccurred("light");
   if (currentEnergy.value > 0) {
     let user = userInfo.value.bonuses.split(", ");
 
@@ -216,10 +219,6 @@ function gotClick() {
     userStore.click({ energyBonus, nutsBonus });
     nutsBonus ? (currentNutsCount.value += 3) : (currentNutsCount.value += 1);
   }
-}
-
-function vibrate() {
-  Telegram.WebApp.HapticFeedback.impactOccurred("light");
 }
 
 function nutClick() {
