@@ -15,7 +15,7 @@
         v-else-if="id == 1"
         @click="tg.openLink(`https://www.youtube.com/@OppoRussia`)"
         ref="check"
-        class="button_block"
+        class="inputLink"
       ></a>
       <a
         v-else-if="id !== 2"
