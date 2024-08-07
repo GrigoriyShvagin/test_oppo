@@ -25,6 +25,7 @@
         ref="check"
         class="button_block"
       >
+        <p class="button" v-if="id == 1">Пригласить друга</p>
         <p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </a>
