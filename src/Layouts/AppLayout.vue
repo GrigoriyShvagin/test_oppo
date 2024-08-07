@@ -68,6 +68,7 @@ p {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: black;
   z-index: 9999; /* Обеспечивает, что видео будет поверх всего */
 }
 
