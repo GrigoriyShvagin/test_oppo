@@ -89,7 +89,7 @@ function checkFunc(id) {
     isLoading.value = false;
     checked.value = true;
     closeAnim = setInterval(() => {
-      close();
+      close({ sendLink: false });
     }, 800);
   }, 4000);
 }
@@ -103,7 +103,7 @@ function sendLinkFunc(id) {
   checkedAnim = setInterval(() => {
     isLoading.value = false;
     closeAnim = setInterval(() => {
-      close();
+      close({ sendLink: true });
       emit("closed");
     }, 800);
   }, 4000);
@@ -122,10 +122,13 @@ defineProps({
 });
 const emit = defineEmits();
 
-const close = () => {
+const close = ({ sendLink }) => {
   clearInterval(closeAnim);
   clearInterval(checkedAnim);
   checked.value = false;
+  if (sendLink) {
+    checkButton.value.style.opacity = 0.2;
+  }
 
   isVisible.value = false;
   emit("closed");
@@ -220,7 +223,9 @@ function changeBlur(e) {
       background: rgba(255, 255, 255, 0.1215686275);
     }
     .smappButton {
-      margin-top: 10px;
+      margin-top: 10px !important;
+      font-size: 16px !important;
+      padding: 15px 60px !important;
     }
     .button_block {
       width: 60%;
