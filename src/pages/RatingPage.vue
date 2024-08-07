@@ -218,7 +218,6 @@ onMounted(() => {
     }
     p {
       font-size: 9vw;
-      width: max-content;
       font-weight: 700;
       color: white;
       margin-top: 20px;
@@ -232,12 +231,12 @@ onMounted(() => {
     top: -20%;
   }
   .nut_image {
-    position: fixed;
+    position: absolute;
     width: 65%;
     max-width: 300px;
     z-index: 10;
     left: 20%;
-    top: -3%;
+    top: -30px;
   }
 }
 </style>
