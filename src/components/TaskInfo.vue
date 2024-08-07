@@ -16,6 +16,8 @@
         @click="tg.openLink(`https://www.youtube.com/@OppoRussia`)"
         ref="check"
         class="inputLink"
+        ><p class="button">{{ buttonText }}</p>
+        <div class="gradient" ref="gradient"></div
       ></a>
       <a
         v-else-if="id !== 2"
