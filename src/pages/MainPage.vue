@@ -20,6 +20,9 @@
             <p class="name" v-else-if="userInfo?.firstname">
               {{ userInfo?.firstName }}
             </p>
+            <p class="name" v-else-if="userInfo?.lastName">
+              {{ userInfo?.lastName }}
+            </p>
           </div>
           <div class="quests_info">
             <div class="quests_count">
