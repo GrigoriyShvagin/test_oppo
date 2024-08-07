@@ -95,6 +95,7 @@ import { onMounted, ref, computed } from "vue";
 import { WhiteBorder } from "../assets";
 import TaskInfo from "../components/TaskInfo.vue";
 import { useTaskStore } from "../store/taskStore";
+import { useRouter } from "vue-router";
 let currMenu = ref("New");
 
 let currentTask = ref(null);
@@ -194,8 +195,11 @@ function setCurrMenu(str) {
   currMenu.value = str;
 }
 
+const router = useRouter();
 function showModal(item) {
-  currentTask.value = item;
+  if (item.id == 2) {
+    router.push("/friends");
+  } else currentTask.value = item;
 }
 
 onMounted(() => {
