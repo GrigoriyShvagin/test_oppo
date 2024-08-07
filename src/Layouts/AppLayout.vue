@@ -74,6 +74,7 @@ p {
 video {
   width: 100%;
   height: 100%;
+  background: black;
   object-fit: cover; /* Позволяет видео заполнять контейнер */
 }
 </style>
