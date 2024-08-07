@@ -205,6 +205,9 @@ function gotClick() {
 
 function vibrate() {
   Telegram.WebApp.HapticFeedback.impactOccurred("light");
+}
+
+function nutClick() {
   if (currentEnergy.value > 0) {
     let user = userInfo.value.bonuses.split(", ");
 
@@ -217,9 +220,7 @@ function vibrate() {
     nutsBonus ? (currentNutsCount.value += 3) : (currentNutsCount.value += 1);
     userStore.click({ energyBonus, nutsBonus });
   }
-}
 
-function nutClick() {
   if (userNutsCount.value % 2 == 0) {
     currentOppa.value < 4 ? (currentOppa.value += 1) : (currentOppa.value = 0);
     currentOppa.value == 1 ? oppa1Anim() : null;
