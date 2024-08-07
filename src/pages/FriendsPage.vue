@@ -28,7 +28,10 @@
         <div class="friends_block">
           <div class="friends_content">
             <div class="header"><p>Список друзей</p></div>
-            <div class="friends_list" v-if="friends">
+            <div
+              class="friends_list"
+              v-if="friends.data?.person?.referralOwners"
+            >
               <div class="friend_block" v-for="item in friends" :key="item.id">
                 <div
                   class="friend"
