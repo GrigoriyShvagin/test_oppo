@@ -35,7 +35,8 @@
         ref="check"
         class="button_block"
       >
-        <p class="button">{{ buttonText }}</p>
+        <p class="button" v-if="id == 2">Пригласить друга</p>
+        <p class="button" v-else>{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div>
       </router-link>
       <div class="reward">
