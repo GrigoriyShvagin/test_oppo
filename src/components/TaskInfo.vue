@@ -15,7 +15,7 @@
         v-else-if="id == 1"
         @click="tg.openLink(`https://www.youtube.com/@OppoRussia`)"
         ref="check"
-        class="inputLink"
+        class="button_block"
         ><p class="button">{{ buttonText }}</p>
         <div class="gradient" ref="gradient"></div
       ></a>
