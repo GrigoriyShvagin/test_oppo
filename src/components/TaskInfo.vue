@@ -125,6 +125,7 @@ const emit = defineEmits();
 const close = ({ sendLink }) => {
   clearInterval(closeAnim);
   clearInterval(checkedAnim);
+  check.value.opacity = 1;
   checked.value = false;
   if (sendLink) {
     checkButton.value.style.opacity = 0.2;
