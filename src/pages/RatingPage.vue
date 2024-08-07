@@ -222,6 +222,8 @@ onMounted(() => {
       color: white;
       margin-top: 20px;
       margin-bottom: 30px;
+      text-align: center;
+      width: 100%;
     }
     .quest {
       margin-bottom: 30px;
@@ -236,7 +238,7 @@ onMounted(() => {
     max-width: 300px;
     z-index: 10;
     left: 20%;
-    top: -30px;
+    top: -50px;
   }
 }
 </style>
