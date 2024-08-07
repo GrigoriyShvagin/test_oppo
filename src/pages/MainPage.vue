@@ -112,8 +112,6 @@ const user = {
   userEnergyCount: 20,
 };
 
-let currentHref = window.location.href;
-
 const userStore = useUserStore();
 const userInfo = computed(() => userStore.userInfo);
 
@@ -216,8 +214,8 @@ function vibrate() {
       e == "nuts" ? (nutsBonus = true) : null;
       e == "energy" ? (energyBonus = true) : null;
     });
-    userStore.click({ energyBonus, nutsBonus });
     nutsBonus ? (currentNutsCount.value += 3) : (currentNutsCount.value += 1);
+    userStore.click({ energyBonus, nutsBonus });
   }
 }
 
@@ -267,7 +265,7 @@ onBeforeUnmount(() => {
 watch(
   currentNutsCount,
   debounce(() => {
-    userStore.changeNutsCount({
+    userStore.changeNutsCountMain({
       energy: currentEnergy.value,
       nuts: userInfo.value.nuts,
       fields: ["energy", "nuts", "lastSeen"],

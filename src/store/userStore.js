@@ -33,6 +33,17 @@ export const useUserStore = defineStore("uesr", {
       this.userInfoData.energy -= 1;
     },
 
+    async changeNutsCountMain({ energy, nuts, used, fields }) {
+      used ? null : await this.getCurrentTime();
+      let lastSeen = new Date(this.currentDateState).toISOString();
+
+      const params = { energy, lastSeen, nuts, fields };
+      const result = await axios.patch(`${url}/user-profile/edit`, params, {
+        headers: headers,
+      });
+      return result.data;
+    },
+
     async changeNutsCount({ energy, nuts, used, fields }) {
       used ? null : await this.getCurrentTime();
       let lastSeen = new Date(this.currentDateState).toISOString();
