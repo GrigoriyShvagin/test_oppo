@@ -86,7 +86,7 @@ let freindsStore = useFriendsStore();
 let friends = computed(() => freindsStore.friendsList);
 
 let text =
-  "Привет, я играю в #КрепкийOPPOрешек, заходи по моей ссылке и получи 5000 орехов!)";
+  "Привет, я играю в КрепкийOPPOрешек, заходи по моей ссылке и получи 5000 орехов!)";
 
 let urlShare = ref("https://t.me/iosdifosdifp_bot?start=");
 
