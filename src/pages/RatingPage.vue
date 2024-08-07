@@ -231,7 +231,7 @@ onMounted(() => {
     top: -20%;
   }
   .nut_image {
-    position: absolute;
+    position: fixed;
     width: 65%;
     max-width: 300px;
     z-index: 10;
