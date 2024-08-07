@@ -218,6 +218,7 @@ onMounted(() => {
     }
     p {
       font-size: 9vw;
+      width: max-content;
       font-weight: 700;
       color: white;
       margin-top: 20px;
