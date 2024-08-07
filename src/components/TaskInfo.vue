@@ -158,6 +158,7 @@ function changeBlur(e) {
       img {
         width: 100%;
         height: auto;
+        border-radius: 20px;
       }
     }
     .text_info {
