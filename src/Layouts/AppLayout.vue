@@ -1,6 +1,6 @@
 <template>
   <div class="video-container" v-if="isLoading">
-    <video autoplay muted loop>
+    <video autoplay muted playsinline loop>
       <source src="/loadingVideo.mp4" type="video/mp4" />
       Ваш браузер не поддерживает видео.
     </video>
