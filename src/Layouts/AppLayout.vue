@@ -1,17 +1,25 @@
 <template>
-  <p class=""></p>
-  <div class="content">
+  <div class="video-container" v-if="isLoading">
+    <video autoplay muted loop>
+      <source src="/loadingVideo.mp4" type="video/mp4" />
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+  <div class="content" v-else>
     <router-view />
     <Footer />
   </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import Footer from "../components/Footer.vue";
 import { useUserStore } from "../store/userStore";
 
 const tg = window.Telegram.WebApp.initDataUnsafe;
+
+let isLoading = ref(true);
+let timeoutID = null;
 
 const userStore = useUserStore();
 
@@ -35,6 +43,13 @@ function checkToken() {
 
 onMounted(() => {
   checkToken();
+  timeoutID = setTimeout(() => {
+    isLoading.value = false;
+  }, 3800);
+});
+
+onBeforeUnmount(() => {
+  clearTimeout(timeoutID);
 });
 </script>
 
@@ -45,5 +60,20 @@ p {
 .content {
   overflow: hidden;
   overscroll-behavior: contain;
+}
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 9999; /* Обеспечивает, что видео будет поверх всего */
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Позволяет видео заполнять контейнер */
 }
 </style>

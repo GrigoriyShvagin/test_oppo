@@ -19,25 +19,6 @@
     const tg = window.Telegram.WebApp;
 
     tg.expand();
-
-    const payoutsData = new window.PayoutsData({
-      type: "payout",
-      account_id: "<Идентификатор_шлюза>", //Идентификатор шлюза (agentId в личном кабинете)
-      success_callback: function (data) {
-        //Обработка ответа с токеном карты
-      },
-      error_callback: function (error) {
-        //Обработка ошибок при получении токена карты
-      },
-    });
-
-    //Отображение формы в контейнере
-    payoutsData
-      .render("payout-form")
-      //Метод возвращает Promise, исполнение которого говорит о полной загрузке формы сбора данных (можно не использовать).
-      .then(() => {
-        //Код, который нужно выполнить после отображения формы.
-      });
   </script>
   <style>
     @font-face {
