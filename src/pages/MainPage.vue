@@ -209,14 +209,16 @@ function vibrate() {
 
 function nutClick() {
   if (currentEnergy.value > 0) {
-    let user = userInfo.value.bonuses.split(", ");
+    let user = userInfo?.value?.bonuses?.split(", ");
 
     let nutsBonus = false;
     let energyBonus = false;
-    user.forEach((e) => {
-      e == "nuts" ? (nutsBonus = true) : null;
-      e == "energy" ? (energyBonus = true) : null;
-    });
+    if (user != null) {
+      user.forEach((e) => {
+        e == "nuts" ? (nutsBonus = true) : null;
+        e == "energy" ? (energyBonus = true) : null;
+      });
+    }
     nutsBonus ? (currentNutsCount.value += 3) : (currentNutsCount.value += 1);
     userStore.click({ energyBonus, nutsBonus });
   }
@@ -235,9 +237,11 @@ function nutClick() {
 function checkEnergy() {
   let user = userInfo?.value?.bonuses?.split(", ");
   let energyBonus = false;
-  user.forEach((e) => {
-    e == "energy" ? (energyBonus = true) : null;
-  });
+  if (user) {
+    user.forEach((e) => {
+      e == "energy" ? (energyBonus = true) : null;
+    });
+  }
   intervalId = setInterval(() => {
     if (currentEnergy.value < 1000) {
       userStore.plusEnergy({ energyBonus });

@@ -1,6 +1,6 @@
 <template>
   <div class="video-container" v-if="isLoading">
-    <video autoplay muted playsinline loop>
+    <video autoplay loop muted playsinline>
       <source src="/loadingVideo.mp4" type="video/mp4" />
       Ваш браузер не поддерживает видео.
     </video>
@@ -33,10 +33,7 @@ function checkToken() {
     });
   } else {
     userStore.setUserData({
-      username: "grigoriy",
-      firstName: "check",
-      lastName: "check",
-      id: 228,
+      id: 5192337987,
     });
   }
 }

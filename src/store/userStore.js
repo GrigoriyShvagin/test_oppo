@@ -88,9 +88,11 @@ export const useUserStore = defineStore("uesr", {
       await this.getCurrentTime();
       let user = this.userInfoData.bonuses?.split(", ");
       let energyBonus = false;
-      user.forEach((e) => {
-        e == "energy" ? (energyBonus = true) : null;
-      });
+      if (user) {
+        user.forEach((e) => {
+          e == "energy" ? (energyBonus = true) : null;
+        });
+      }
       let currentTime = new Date(this.currentDateState);
 
       const lastSeen = new Date(localStorage.getItem("lastSeen"));
